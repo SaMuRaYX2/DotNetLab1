@@ -36,3 +36,6 @@ C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\bin\Debug\net8.0-windows\run
 C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\bin\Debug\net8.0-windows\runtimes\win-x64\native\k5sprt64.dll
 C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\bin\Debug\net8.0-windows\runtimes\win-x64\native\krb5_64.dll
 C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\bin\Debug\net8.0-windows\runtimes\win-x64\native\krbcc64.dll
+C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\obj\Debug\net8.0-windows\Terminal_MyBankWPF.sourcelink.json
+C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\bin\Debug\net8.0-windows\Library_for_bank.dll
+C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\bin\Debug\net8.0-windows\Library_for_bank.pdb

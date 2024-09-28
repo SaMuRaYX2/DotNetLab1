@@ -490,6 +490,19 @@
         "runtime": {
           "lib/net8.0/ZstdSharp.dll": {}
         }
+      },
+      "Library_for_bank/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "MySql.Data": "9.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Library_for_bank.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Library_for_bank.dll": {}
+        }
       }
     }
   },
@@ -1635,10 +1648,16 @@
         "zstdsharp.port.0.8.0.nupkg.sha512",
         "zstdsharp.port.nuspec"
       ]
+    },
+    "Library_for_bank/1.0.0": {
+      "type": "project",
+      "path": "../Library_for_bank/Library_for_bank.csproj",
+      "msbuildProject": "../Library_for_bank/Library_for_bank.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
+      "Library_for_bank >= 1.0.0",
       "MySql.Data >= 9.0.0",
       "WpfAnimatedGif >= 2.0.2"
     ]
@@ -1670,7 +1689,11 @@
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\Library_for_bank.csproj": {
+              "projectPath": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\Library_for_bank.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

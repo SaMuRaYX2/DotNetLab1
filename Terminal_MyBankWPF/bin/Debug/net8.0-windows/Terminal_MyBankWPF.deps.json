@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "Terminal_MyBankWPF/1.0.0": {
         "dependencies": {
+          "Library_for_bank": "1.0.0",
           "MySql.Data": "9.0.0",
           "WpfAnimatedGif": "2.0.2"
         },
@@ -210,6 +211,17 @@
           "lib/net8.0/ZstdSharp.dll": {
             "assemblyVersion": "0.8.0.0",
             "fileVersion": "0.8.0.0"
+          }
+        }
+      },
+      "Library_for_bank/1.0.0": {
+        "dependencies": {
+          "MySql.Data": "9.0.0"
+        },
+        "runtime": {
+          "Library_for_bank.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       }
@@ -430,6 +442,11 @@
       "sha512": "sha512-Z62eNBIu8E8YtbqlMy57tK3dV1+m2b9NhPeaYovB5exmLKvrGCqOhJTzrEUH5VyUWU6vwX3c1XHJGhW5HVs8dA==",
       "path": "zstdsharp.port/0.8.0",
       "hashPath": "zstdsharp.port.0.8.0.nupkg.sha512"
+    },
+    "Library_for_bank/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

@@ -1,0 +1,13 @@
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\net8.0\Library_for_bank.deps.json
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\net8.0\Library_for_bank.dll
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\net8.0\Library_for_bank.pdb
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\net8.0\Library_for_bank.csproj.AssemblyReference.cache
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\net8.0\Library_for_bank.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\net8.0\Library_for_bank.AssemblyInfoInputs.cache
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\net8.0\Library_for_bank.AssemblyInfo.cs
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\net8.0\Library_for_bank.csproj.CoreCompileInputs.cache
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\net8.0\Library_for_bank.sourcelink.json
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\net8.0\Library_for_bank.dll
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\net8.0\refint\Library_for_bank.dll
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\net8.0\Library_for_bank.pdb
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\net8.0\ref\Library_for_bank.dll

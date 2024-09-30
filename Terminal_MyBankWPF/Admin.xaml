@@ -54,5 +54,11 @@
         <TextBox Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="4" BorderBrush="ForestGreen" BorderThickness="3" TextDecorations="Underline" Text="sex" TextAlignment="Center" FontSize="20" FontWeight="DemiBold" VerticalContentAlignment="Center" Background="#801e1e1a" Tag="sex"></TextBox>
         <Button x:Name="add_user" Grid.Row="8" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="4" Margin="30" Content="Добавити користувача" FontSize="15" FontWeight="bold" Background="Transparent" BorderThickness="0" BorderBrush="Transparent" Foreground="LawnGreen"></Button>
         <Border Grid.Row="8" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="4" Margin="30" CornerRadius="30" Panel.ZIndex="-1" Background="#731536"></Border>
+        <Border Grid.RowSpan="2" Grid.ColumnSpan="4" Grid.Column="3" Margin="10,25,10,25" CornerRadius="30" Background="Black" ></Border>
+        <TextBlock x:Name="go_to_terminal" Grid.RowSpan="2" Grid.ColumnSpan="4" Grid.Column="3" Margin="10,25,10,25" Padding="10" Text="Go to Terminal" Foreground="WhiteSmoke" TextWrapping="Wrap" TextAlignment="center" VerticalAlignment="Center" FontSize="25" FontWeight="DemiBold" FontStyle="Italic">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="White" BlurRadius="30" ShadowDepth="5" Direction="320" Opacity="1"></DropShadowEffect>
+            </TextBlock.Effect>
+        </TextBlock>
     </Grid>
 </Window>

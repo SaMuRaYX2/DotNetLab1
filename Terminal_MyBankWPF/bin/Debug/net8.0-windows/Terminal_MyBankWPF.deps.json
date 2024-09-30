@@ -215,9 +215,6 @@
         }
       },
       "Library_for_bank/1.0.0": {
-        "dependencies": {
-          "MySql.Data": "9.0.0"
-        },
         "runtime": {
           "Library_for_bank.dll": {
             "assemblyVersion": "1.0.0",

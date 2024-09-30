@@ -39,3 +39,6 @@ C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\bin\Debug\net8.0-windows\run
 C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\obj\Debug\net8.0-windows\Terminal_MyBankWPF.sourcelink.json
 C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\bin\Debug\net8.0-windows\Library_for_bank.dll
 C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\bin\Debug\net8.0-windows\Library_for_bank.pdb
+C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\bin\Debug\net8.0-windows\Library_for_bank.dll.config
+C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\bin\Debug\net8.0-windows\FluentTextTable.dll
+C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\bin\Debug\net8.0-windows\EastAsianWidthDotNet.dll

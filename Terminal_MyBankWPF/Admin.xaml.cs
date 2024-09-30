@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using Library_for_bank;
 using MySql.Data.MySqlClient;
 using Mysqlx.Session;
+using System.Diagnostics;
 
 namespace Terminal_MyBankWPF
 {
@@ -42,16 +43,26 @@ namespace Terminal_MyBankWPF
         public Admin(MainWindow mainWindow)
         {
             InitializeComponent();
+            
             window_start = mainWindow;
             this.Closed += Admin_Closed;
             this.Loaded += Admin_Loaded;
             add_user.Click += Add_user_Click;
+            go_to_terminal.MouseDown += Go_to_terminal_MouseDown;
+        }
+
+        private void Go_to_terminal_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Process process = new Process();
+            process.StartInfo.FileName = @"C:\Users\Sam\source\repos\MyBank\MyBankTerminal\bin\Debug\MyBankTerminal.exe";
+            process.StartInfo.UseShellExecute = true;
+            process.StartInfo.CreateNoWindow = false;
+            process.Start();
         }
 
         private void Add_user_Click(object sender, RoutedEventArgs e)
         {
             bool test_to_fill_all_textBox = true;
-            
             foreach(var textBox in GetAllTextBoxes(this))
             {
                 if(textBox.Text == "pib" || textBox.Text == "telephone_number" || textBox.Text == "pin" || textBox.Text == "telephone" || textBox.Text == "age" || textBox.Text == "sex" || textBox.Text == "")
@@ -101,7 +112,7 @@ namespace Terminal_MyBankWPF
                 DB db = new DB();
                 number_card = random.Next(1000000, 9000000);
                 bool test = Test_to_unique_number_card(number_card, db);
-                while ((test = Test_to_unique_number_card(number_card, db)))
+                while (test = Test_to_unique_number_card(number_card, db))
                 {
                     number_card = random.Next(1000000, 9000000);
                 }
@@ -125,7 +136,7 @@ namespace Terminal_MyBankWPF
                     }
                 }
             }
-            db.closeConnection();
+            db.closeConnection();   
             return existingNumbers.Contains(number);
         }
         private void Filling_DataBase(object? sender, UserBankArgs e)
@@ -150,7 +161,7 @@ namespace Terminal_MyBankWPF
             {
                 void Result()
                 {
-                    MessageBox.Show("Дані були завантаженні на сервер","Все добре, без поимилок!!!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Дані були завантаженні на сервер","Все добре, без помилок!!!", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 db.Result_of_INSERT(Result);
             }

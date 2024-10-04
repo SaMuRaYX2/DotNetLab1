@@ -26,7 +26,7 @@ namespace MyBankTerminal
                 command.StartSearchCommand += OutputCommand;
                 command.StartSeaching();
                 command.StartSearchCommand -= OutputCommand;
-            } while (enter_command != "exit");
+            } while (true);
         }
         
         public static void OutputCommand(object sender, CommandEvent e)

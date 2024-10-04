@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using FluentTextTable;
+using Org.BouncyCastle.Utilities.Encoders;
+using System.Net.NetworkInformation;
+using System.Xml.Linq;
 
 namespace Library_for_bank
 {
@@ -22,6 +25,7 @@ namespace Library_for_bank
             list_of_command.Add("show all users");
             list_of_command.Add("show user");
             list_of_command.Add("add user");
+            list_of_command.Add("exit");
             if (_command == "show all users")
             {
                 query = "select * from users";
@@ -32,8 +36,9 @@ namespace Library_for_bank
             }
             else if (_command == "add user")
             {
-                query = "insert into users (name,surname,fatherly,number_telephone,pin,telephone,age,sex,number_card) values (@s1,@s2,@s3,@s4,@s5,@s6,@s7,@s8,@s9)";
+                query = "insert into users (name,surname,fatherly,number_telephone,pin,telephone,age,sex,number_card,balance) values (@s1,@s2,@s3,@s4,@s5,@s6,@s7,@s8,@s9,@s10)";
             }
+            
         }
         public void StartSeaching()
         {
@@ -75,6 +80,7 @@ namespace Library_for_bank
                     user.age = reader.GetInt32("age");
                     user.sex = reader.GetString("sex");
                     user.number_card = reader.GetInt32("number_card");
+                    user.balance = reader.GetDecimal("balance");
                     users.Add(user);
 
                 }
@@ -93,15 +99,106 @@ namespace Library_for_bank
                     .Columns.Add(x => x.telephone).NameAs("TELEPHONE").HorizontalAlignmentAs(HorizontalAlignment.Center)
                     .Columns.Add(x => x.age).NameAs("AGE").HorizontalAlignmentAs(HorizontalAlignment.Center)
                     .Columns.Add(x => x.sex).NameAs("SEX").HorizontalAlignmentAs(HorizontalAlignment.Center)
-                    .Columns.Add(x => x.number_card).NameAs("NUMBER_CARD").HorizontalAlignmentAs(HorizontalAlignment.Center);
+                    .Columns.Add(x => x.number_card).NameAs("NUMBER_CARD").HorizontalAlignmentAs(HorizontalAlignment.Center)
+                    .Columns.Add(x => x.balance).NameAs("BALANCE").HorizontalAlignmentAs(HorizontalAlignment.Center);
             });
             table.WriteLine(users);
         }
         public void InputUser()
         {
-
+            User user = new User();
+            Console.Write("\nadmin@My_Bank:~# Введіть ім'я користувача банку : ");
+            user.name = Console.ReadLine();
+            Console.Write("\nadmin@My_Bank:~# Введіть фамілію користувача банку : ");
+            user.surname = Console.ReadLine();
+            Console.Write("\nadmin@My_Bank:~# Введіть по-батькові користувача банку : ");
+            user.fatherly = Console.ReadLine();
+            Console.Write("\nadmin@My_Bank:~# Введіть номер телефону користувача : ");
+            user.number_telephone = Console.ReadLine();
+            Console.Write("\nadmin@My_Bank:~# Введіть пін-код карти користувача : ");
+            int temp_pin;
+            while (!int.TryParse(Console.ReadLine(), out temp_pin))
+            {
+                Console.Write("\nadmin@My_Bank:~# Невірний ввід, введіть правильне значення для пінкода : ");
+            }
+            user.pin = temp_pin;
+            Console.Write("\nadmin@My_Bank:~# Введіть назву телефону користувача : ");
+            user.telephone = Console.ReadLine();
+            Console.Write("\nadmin@My_Bank:~# Введіть скільки років користувачеві : ");
+            int age_temp;
+            while (!int.TryParse(Console.ReadLine(), out age_temp))
+            {
+                Console.Write("\nadmin@My_Bank:~# Невірний ввід, введіть правильне значення : ");
+            }
+            user.age = age_temp;
+            Console.Write("\nadmin@My_Bank:~# Введіть пол користувача : ");
+            user.sex = Console.ReadLine();
+            Random rand = new Random();
+            DB db = new DB();
+            int random_number_card = rand.Next(1000000, 9000000);
+            bool test_unique;
+            while (test_unique = Test_to_unique_number_card(random_number_card, db))
+            {
+                random_number_card = rand.Next(1000000, 9000000);
+            }
+            if(test_unique == false)
+            {
+                user.number_card = random_number_card;
+            }
+            user.balance = 0.000m;
+            using (MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
+            {
+                cmd.Parameters.Add("@s1", MySqlDbType.VarChar).Value = user.name;
+                cmd.Parameters.Add("@s2", MySqlDbType.VarChar).Value = user.surname;
+                cmd.Parameters.Add("@s3", MySqlDbType.VarChar).Value = user.fatherly;
+                cmd.Parameters.Add("@s4", MySqlDbType.VarChar).Value = user.number_telephone;
+                cmd.Parameters.Add("@s5", MySqlDbType.Int32).Value = user.pin;
+                cmd.Parameters.Add("@s6", MySqlDbType.VarChar).Value = user.telephone;
+                cmd.Parameters.Add("@s7", MySqlDbType.Int32).Value = user.age;
+                cmd.Parameters.Add("@s8", MySqlDbType.VarChar).Value = user.sex;
+                cmd.Parameters.Add("@s9", MySqlDbType.Int32).Value = user.number_card;
+                cmd.Parameters.Add("@s10", MySqlDbType.Decimal).Value = user.balance;
+                db.openConnection();
+                int result = cmd.ExecuteNonQuery();
+                db.closeConnection();
+                if (result > 0)
+                {
+                    void Result()
+                    {
+                        Console.WriteLine("\t\t\t\tДані були завантаженні на сервер, Все добре, без помилок!!!");
+                    }
+                    db.Result_of_INSERT(Result);
+                }
+                else
+                {
+                    void Result()
+                    {
+                        Console.WriteLine("\t\t\t\tДані не були завантаженні на сервер, Є якась помилка!!!");
+                    }
+                    db.Result_of_INSERT(Result);
+                }
+            }
+        }
+        private bool Test_to_unique_number_card(int number, DB db)
+        {
+            string query = "SELECT (number_card) from users";
+            List<int> existingNumbers = new List<int>();
+            using (MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
+            {
+                db.openConnection();
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        existingNumbers.Add(reader.GetInt32("number_card"));
+                    }
+                }
+            }
+            db.closeConnection();
+            return existingNumbers.Contains(number);
         }
     }
+
     public class User
     {
         public int id { get; set; }
@@ -114,5 +211,6 @@ namespace Library_for_bank
         public int age { get; set; }
         public string sex { get; set; }
         public int number_card { get; set; }
+        public decimal balance { get; set; }
     }
 }

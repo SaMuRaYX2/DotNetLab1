@@ -23,13 +23,27 @@ namespace Library_for_bank
         {
             bool test = false;
             TerminalCommand terminalCommand = new TerminalCommand(_command);
-            del = terminalCommand.OutputAllUsers;
             
             for(int i = 0; i < terminalCommand.list_of_command.Count; i++)
             {
                 if (_command == terminalCommand.list_of_command[i])
                 {
                     test = true;
+                    if (_command == "show all users" || _command == "show user")
+                    {
+                        del = terminalCommand.OutputAllUsers;
+                    }
+                    else if (_command == "add user")
+                    {
+                        del = terminalCommand.InputUser;
+                    }
+                    else if(_command == "exit")
+                    {
+                        del = () =>
+                        {
+                            Environment.Exit(0);
+                        };
+                    }
                     break;
                 }
             }

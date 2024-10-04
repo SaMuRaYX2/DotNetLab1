@@ -221,6 +221,22 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "FluentTextTable/1.0.0.0": {
+        "runtime": {
+          "FluentTextTable.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "EastAsianWidthDotNet/1.0.1.0": {
+        "runtime": {
+          "EastAsianWidthDotNet.dll": {
+            "assemblyVersion": "1.0.1.0",
+            "fileVersion": "1.0.1.0"
+          }
+        }
       }
     }
   },
@@ -442,6 +458,16 @@
     },
     "Library_for_bank/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FluentTextTable/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EastAsianWidthDotNet/1.0.1.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

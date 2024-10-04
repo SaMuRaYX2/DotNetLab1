@@ -69,7 +69,7 @@ namespace Terminal_MyBankWPF {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Terminal_MyBankWPF;V1.0.0.0;component/admin.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Terminal_MyBankWPF;component/admin.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Admin.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

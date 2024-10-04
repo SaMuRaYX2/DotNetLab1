@@ -25,10 +25,10 @@ namespace Terminal_MyBankWPF
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    
+
     public partial class Admin : Window
     {
-        
+
         public MainWindow window_start { get; private set; }
         public List<UserBankArgs> Users { get; private set; }
         string name;
@@ -39,11 +39,11 @@ namespace Terminal_MyBankWPF
         string telephone;
         int age;
         string sex;
-        int number_card;
+        string number_card;
         public Admin(MainWindow mainWindow)
         {
             InitializeComponent();
-            
+
             window_start = mainWindow;
             this.Closed += Admin_Closed;
             this.Loaded += Admin_Loaded;
@@ -63,9 +63,9 @@ namespace Terminal_MyBankWPF
         private void Add_user_Click(object sender, RoutedEventArgs e)
         {
             bool test_to_fill_all_textBox = true;
-            foreach(var textBox in GetAllTextBoxes(this))
+            foreach (var textBox in GetAllTextBoxes(this))
             {
-                if(textBox.Text == "pib" || textBox.Text == "telephone_number" || textBox.Text == "pin" || textBox.Text == "telephone" || textBox.Text == "age" || textBox.Text == "sex" || textBox.Text == "")
+                if (textBox.Text == "pib" || textBox.Text == "telephone_number" || textBox.Text == "pin" || textBox.Text == "telephone" || textBox.Text == "age" || textBox.Text == "sex" || textBox.Text == "")
                 {
                     test_to_fill_all_textBox = false;
                     textBox.Background = Brushes.DarkRed;
@@ -77,32 +77,32 @@ namespace Terminal_MyBankWPF
             }
             else
             {
-                foreach(var textBox in GetAllTextBoxes(this))
+                foreach (var textBox in GetAllTextBoxes(this))
                 {
-                    if(textBox.Tag.ToString() == "pib")
+                    if (textBox.Tag.ToString() == "pib")
                     {
                         string[] parts = textBox.Text.Split(' ');
                         surname = parts[0];
                         name = parts[1];
                         fatherly = parts[2];
                     }
-                    else if(textBox.Tag.ToString() == "telephone_number")
+                    else if (textBox.Tag.ToString() == "telephone_number")
                     {
                         number_telephone = textBox.Text;
                     }
-                    else if(textBox.Tag.ToString() == "pin")
+                    else if (textBox.Tag.ToString() == "pin")
                     {
                         int.TryParse(textBox.Text, out pin);
                     }
-                    else if(textBox.Tag.ToString() == "telephone")
+                    else if (textBox.Tag.ToString() == "telephone")
                     {
                         telephone = textBox.Text;
                     }
-                    else if(textBox.Tag.ToString() == "age")
+                    else if (textBox.Tag.ToString() == "age")
                     {
                         int.TryParse(textBox.Text, out age);
                     }
-                    else if(textBox.Tag.ToString() == "sex")
+                    else if (textBox.Tag.ToString() == "sex")
                     {
                         sex = textBox.Text;
                     }
@@ -110,21 +110,32 @@ namespace Terminal_MyBankWPF
                 }
                 Random random = new Random();
                 DB db = new DB();
-                number_card = random.Next(1000000, 9000000);
-                bool test = Test_to_unique_number_card(number_card, db);
+                decimal balance = 0.000m;
+                
+                number_card = GenerateRandomStringNumber(16);
+                bool test;
                 while (test = Test_to_unique_number_card(number_card, db))
                 {
-                    number_card = random.Next(1000000, 9000000);
+                    number_card = GenerateRandomStringNumber(16);
                 }
                 db.Start_Fill_DataBase += Filling_DataBase;
-                db.Start_Filling(name, surname, fatherly, number_telephone, pin, telephone, age, sex, number_card);
+                db.Start_Filling(name, surname, fatherly, number_telephone, pin, telephone, age, sex, number_card, balance);
             }
         }
-
-        private bool Test_to_unique_number_card(int number, DB db)
+        public string GenerateRandomStringNumber(int length)
         {
-            string query = "SELECT (number_card) from users";
-            List<int> existingNumbers = new List<int>();
+            Random rnd = new Random();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < length; i++)
+            {
+                sb.Append(rnd.Next(0, 10));
+            }
+            return sb.ToString();
+        }
+        private bool Test_to_unique_number_card(string number, DB db)
+        {
+            string query = "select number_card from users";
+            List<string> existingNumbers = new List<string>();
             using (MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
             {
                 db.openConnection();
@@ -132,7 +143,7 @@ namespace Terminal_MyBankWPF
                 {
                     while (reader.Read())
                     {
-                        existingNumbers.Add(reader.GetInt32("number_card"));
+                        existingNumbers.Add(reader.GetString("number_card"));
                     }
                 }
             }
@@ -142,18 +153,19 @@ namespace Terminal_MyBankWPF
         private void Filling_DataBase(object? sender, UserBankArgs e)
         {
             DB db = sender as DB;
-            string query = "INSERT INTO users (name,surname,fatherly,number_telephone,pin,telephone,age,sex,number_card) VALUES (@s1,@s2,@s3,@s4,@s5,@s6,@s7,@s8,@s9)";
-
+            string query = "INSERT INTO users (name,surname,fatherly,number_telephone,pin,telephone,age,sex,number_card,balance) VALUES (@s1,@s2,@s3,@s4,@s5,@s6,@s7,@s8,@s9,@s10)";
+            
             MySqlCommand cmd = new MySqlCommand(query, db.getConnection());
-            cmd.Parameters.Add("@s1", MySqlDbType.VarChar).Value = name;
-            cmd.Parameters.Add("@s2", MySqlDbType.VarChar).Value = surname;
-            cmd.Parameters.Add("@s3", MySqlDbType.VarChar).Value = fatherly;
-            cmd.Parameters.Add("@s4", MySqlDbType.VarChar).Value = number_telephone;
-            cmd.Parameters.Add("@s5", MySqlDbType.Int32).Value = pin;
-            cmd.Parameters.Add("@s6", MySqlDbType.VarChar).Value = telephone;
-            cmd.Parameters.Add("@s7", MySqlDbType.Int32).Value = age;
-            cmd.Parameters.Add("@s8", MySqlDbType.VarChar).Value = sex;
-            cmd.Parameters.Add("@s9", MySqlDbType.Int32).Value = number_card;
+            cmd.Parameters.Add("@s1", MySqlDbType.VarChar).Value = e.Name;
+            cmd.Parameters.Add("@s2", MySqlDbType.VarChar).Value = e.Surname;
+            cmd.Parameters.Add("@s3", MySqlDbType.VarChar).Value = e.Fatherly;
+            cmd.Parameters.Add("@s4", MySqlDbType.VarChar).Value = e.Number_telephone;
+            cmd.Parameters.Add("@s5", MySqlDbType.Int32).Value = e.Pin;
+            cmd.Parameters.Add("@s6", MySqlDbType.VarChar).Value = e.Telephone;
+            cmd.Parameters.Add("@s7", MySqlDbType.Int32).Value = e.Age;
+            cmd.Parameters.Add("@s8", MySqlDbType.VarChar).Value = e.Sex;
+            cmd.Parameters.Add("@s9", MySqlDbType.VarChar).Value = e.Number_card;
+            cmd.Parameters.Add("@s10", MySqlDbType.Decimal).Value = e.balance;
             db.openConnection();
             int result = cmd.ExecuteNonQuery();
             db.closeConnection();

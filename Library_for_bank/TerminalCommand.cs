@@ -18,6 +18,7 @@ namespace Library_for_bank
         public List<string> list_of_command { get; private set; }
         public string query { get; private set; }
         public string name_of_user { get; private set; }
+        
         public TerminalCommand(string command)
         {
             _command = command;
@@ -79,7 +80,7 @@ namespace Library_for_bank
                     user.telephone = reader.GetString("telephone");
                     user.age = reader.GetInt32("age");
                     user.sex = reader.GetString("sex");
-                    user.number_card = reader.GetInt32("number_card");
+                    user.number_card = reader.GetString("number_card");
                     user.balance = reader.GetDecimal("balance");
                     users.Add(user);
 
@@ -135,15 +136,11 @@ namespace Library_for_bank
             user.sex = Console.ReadLine();
             Random rand = new Random();
             DB db = new DB();
-            int random_number_card = rand.Next(1000000, 9000000);
-            bool test_unique;
-            while (test_unique = Test_to_unique_number_card(random_number_card, db))
+            user.number_card = GenerateRandomStringNumber(16);
+            bool test;
+            while(test = Test_to_unique_number_card(user.number_card, db))
             {
-                random_number_card = rand.Next(1000000, 9000000);
-            }
-            if(test_unique == false)
-            {
-                user.number_card = random_number_card;
+                user.number_card = GenerateRandomStringNumber(16);
             }
             user.balance = 0.000m;
             using (MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
@@ -179,10 +176,20 @@ namespace Library_for_bank
                 }
             }
         }
-        private bool Test_to_unique_number_card(int number, DB db)
+        public string GenerateRandomStringNumber(int length)
+        {
+            Random rnd = new Random();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < length; i++)
+            {
+                sb.Append(rnd.Next(0, 10));
+            }
+            return sb.ToString();
+        }
+        private bool Test_to_unique_number_card(string number, DB db)
         {
             string query = "SELECT (number_card) from users";
-            List<int> existingNumbers = new List<int>();
+            List<string> existingNumbers = new List<string>();
             using (MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
             {
                 db.openConnection();
@@ -190,7 +197,7 @@ namespace Library_for_bank
                 {
                     while (reader.Read())
                     {
-                        existingNumbers.Add(reader.GetInt32("number_card"));
+                        existingNumbers.Add(reader.GetString("number_card"));
                     }
                 }
             }
@@ -210,7 +217,7 @@ namespace Library_for_bank
         public string telephone { get; set; }
         public int age { get; set; }
         public string sex { get; set; }
-        public int number_card { get; set; }
+        public string number_card { get; set; }
         public decimal balance { get; set; }
     }
 }

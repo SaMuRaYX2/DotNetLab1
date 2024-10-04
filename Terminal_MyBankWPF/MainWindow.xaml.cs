@@ -61,7 +61,7 @@ namespace Terminal_MyBankWPF
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Помилка з відправкою смс на телефон {e.user.number_telephone}, помилка пов'язана з відправкою на domain {e.email_recipient}", $"Exception", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+                MessageBox.Show($"Помилка з відправкою смс на пошту {e.user.email}, помилка пов'язана з відправкою на domain {e.email_recipient}", $"Exception", MessageBoxButton.OKCancel, MessageBoxImage.Error);
             }
         }
         
@@ -122,10 +122,36 @@ namespace Terminal_MyBankWPF
             Random rnd = new Random();
             code = rnd.Next(1000,10000);
             string request = $"Нікому не показуйте цей код, який вам потрібно для аунтифікації в банківську систему для наступних маніпуляцій з вашою картою, упевніться, що це ваша карта {number}\nВаш код аунтифікації {code}";
+
+            if (test_to_myLove(db))
+            {
+                request = $"Привіт котику люблю тебе :), це твій код аунтифікації в банківську систему MyBank {code}, а це твій номер карти {number}, нікому не говори цей код";
+            }
             machine.CodeEvent += Email_code;
             machine.Send_code_authentification(request, choosen_service,id_user);
-            //machine.CodeEvent -= Email_code;
+            machine.CodeEvent -= Email_code;
 
+        }
+        public bool test_to_myLove(DB db)
+        {
+            string query = "select id from users where name = @s1 and surname = @s2 and fatherly = @s3";
+            db.openConnection();
+            int temp_id = 0;
+            using (MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
+            {
+                cmd.Parameters.AddWithValue("@s1", "Юліана");
+                cmd.Parameters.AddWithValue("@s2", "Липська");
+                cmd.Parameters.AddWithValue("@s3", "Андріївна");
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        temp_id = reader.GetInt32("id");
+                    }
+                }
+            }
+            db.closeConnection();
+            return temp_id == id_user;
         }
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
         {

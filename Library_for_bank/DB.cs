@@ -26,16 +26,16 @@ namespace Library_for_bank
         {
             return connection;
         }
-        public void OnFill_DataBase(string name, string surname, string fatherly, string number_telephone, int pin, string telephone, int age, string sex, string number_card, decimal balance)
+        public void OnFill_DataBase(string name, string surname, string fatherly, string number_telephone, int pin, string telephone, int age, string sex, string number_card, decimal balance, string email)
         {
             if(Start_Fill_DataBase != null)
             {
-                Start_Fill_DataBase(this, new UserBankArgs(name, surname, fatherly, number_telephone, pin, telephone, age, sex, number_card,balance));
+                Start_Fill_DataBase(this, new UserBankArgs(name, surname, fatherly, number_telephone, pin, telephone, age, sex, number_card,balance, email));
             }
         }
-        public void Start_Filling(string name, string surname, string fatherly, string number_telephone, int pin, string telephone, int age, string sex, string number_card, decimal balance)
+        public void Start_Filling(string name, string surname, string fatherly, string number_telephone, int pin, string telephone, int age, string sex, string number_card, decimal balance, string email)
         {
-            OnFill_DataBase(name, surname, fatherly, number_telephone, pin, telephone, age, sex, number_card, balance);
+            OnFill_DataBase(name, surname, fatherly, number_telephone, pin, telephone, age, sex, number_card, balance, email);
         }
         public void Result_of_INSERT(Result_Of_INSERT result)
         {

@@ -89,7 +89,7 @@
         <ComboBox x:Name="service_of_authentication" Grid.Row="9" Grid.Column="10" Grid.RowSpan="2" Grid.ColumnSpan="3" Margin="0,20,0,20" FontSize="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" FontStyle="Italic" Foreground="Black">
             <ComboBoxItem Content="Telegram" Background="DarkGreen"></ComboBoxItem>
             <ComboBoxItem Content="Viber" Background="DarkBlue"></ComboBoxItem>
-            <ComboBoxItem Content="SMS" IsSelected="True" Background="DarkOrange"></ComboBoxItem>
+            <ComboBoxItem Content="EMAIL" IsSelected="True" Background="DarkOrange"></ComboBoxItem>
         </ComboBox>
     </Grid>
 </Window>

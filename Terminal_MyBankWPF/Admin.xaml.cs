@@ -40,6 +40,7 @@ namespace Terminal_MyBankWPF
         int age;
         string sex;
         string number_card;
+        string email;
         public Admin(MainWindow mainWindow)
         {
             InitializeComponent();
@@ -65,7 +66,7 @@ namespace Terminal_MyBankWPF
             bool test_to_fill_all_textBox = true;
             foreach (var textBox in GetAllTextBoxes(this))
             {
-                if (textBox.Text == "pib" || textBox.Text == "telephone_number" || textBox.Text == "pin" || textBox.Text == "telephone" || textBox.Text == "age" || textBox.Text == "sex" || textBox.Text == "")
+                if (textBox.Text == "pib" || textBox.Text == "telephone_number" || textBox.Text == "pin" || textBox.Text == "telephone" || textBox.Text == "age" || textBox.Text == "sex" || textBox.Text == "" || textBox.Text == "email")
                 {
                     test_to_fill_all_textBox = false;
                     textBox.Background = Brushes.DarkRed;
@@ -106,7 +107,10 @@ namespace Terminal_MyBankWPF
                     {
                         sex = textBox.Text;
                     }
-
+                    else if(textBox.Tag.ToString() == "email")
+                    {
+                        email = textBox.Text;
+                    }
                 }
                 Random random = new Random();
                 DB db = new DB();
@@ -119,7 +123,7 @@ namespace Terminal_MyBankWPF
                     number_card = GenerateRandomStringNumber(16);
                 }
                 db.Start_Fill_DataBase += Filling_DataBase;
-                db.Start_Filling(name, surname, fatherly, number_telephone, pin, telephone, age, sex, number_card, balance);
+                db.Start_Filling(name, surname, fatherly, number_telephone, pin, telephone, age, sex, number_card, balance,email);
             }
         }
         public string GenerateRandomStringNumber(int length)
@@ -153,7 +157,7 @@ namespace Terminal_MyBankWPF
         private void Filling_DataBase(object? sender, UserBankArgs e)
         {
             DB db = sender as DB;
-            string query = "INSERT INTO users (name,surname,fatherly,number_telephone,pin,telephone,age,sex,number_card,balance) VALUES (@s1,@s2,@s3,@s4,@s5,@s6,@s7,@s8,@s9,@s10)";
+            string query = "INSERT INTO users (name,surname,fatherly,number_telephone,pin,telephone,age,sex,number_card,balance,address_email) VALUES (@s1,@s2,@s3,@s4,@s5,@s6,@s7,@s8,@s9,@s10,@s11)";
             
             MySqlCommand cmd = new MySqlCommand(query, db.getConnection());
             cmd.Parameters.Add("@s1", MySqlDbType.VarChar).Value = e.Name;
@@ -166,6 +170,7 @@ namespace Terminal_MyBankWPF
             cmd.Parameters.Add("@s8", MySqlDbType.VarChar).Value = e.Sex;
             cmd.Parameters.Add("@s9", MySqlDbType.VarChar).Value = e.Number_card;
             cmd.Parameters.Add("@s10", MySqlDbType.Decimal).Value = e.balance;
+            cmd.Parameters.Add("@s11", MySqlDbType.VarChar).Value = e.email;
             db.openConnection();
             int result = cmd.ExecuteNonQuery();
             db.closeConnection();
@@ -205,7 +210,7 @@ namespace Terminal_MyBankWPF
             }
             if (textBox != null)
             {
-                if(textBox.Text == "pib" || textBox.Text == "telephone_number" || textBox.Text == "pin" || textBox.Text == "telephone" || textBox.Text == "age" || textBox.Text == "sex" || textBox.Text == "")
+                if(textBox.Text == "pib" || textBox.Text == "telephone_number" || textBox.Text == "pin" || textBox.Text == "telephone" || textBox.Text == "age" || textBox.Text == "sex" || textBox.Text == "" || textBox.Text == "email")
                 {
                     textBox.Text = textBox.Tag.ToString();
                 }
@@ -225,7 +230,7 @@ namespace Terminal_MyBankWPF
             }
             if (textBox != null)
             {
-                if(textBox.Text == "pib" || textBox.Text == "telephone_number" || textBox.Text == "pin" || textBox.Text == "telephone" || textBox.Text == "age" || textBox.Text == "sex")
+                if(textBox.Text == "pib" || textBox.Text == "telephone_number" || textBox.Text == "pin" || textBox.Text == "telephone" || textBox.Text == "age" || textBox.Text == "sex" || textBox.Text == "email")
                 {
                     textBox.Text = "";
                 }

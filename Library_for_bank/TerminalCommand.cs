@@ -37,7 +37,7 @@ namespace Library_for_bank
             }
             else if (_command == "add user")
             {
-                query = "insert into users (name,surname,fatherly,number_telephone,pin,telephone,age,sex,number_card,balance) values (@s1,@s2,@s3,@s4,@s5,@s6,@s7,@s8,@s9,@s10)";
+                query = "insert into users (name,surname,fatherly,number_telephone,pin,telephone,age,sex,number_card,balance,address_email) values (@s1,@s2,@s3,@s4,@s5,@s6,@s7,@s8,@s9,@s10,@s11)";
             }
             
         }
@@ -82,6 +82,7 @@ namespace Library_for_bank
                     user.sex = reader.GetString("sex");
                     user.number_card = reader.GetString("number_card");
                     user.balance = reader.GetDecimal("balance");
+                    user.email = reader.GetString("address_email");
                     users.Add(user);
 
                 }
@@ -101,7 +102,8 @@ namespace Library_for_bank
                     .Columns.Add(x => x.age).NameAs("AGE").HorizontalAlignmentAs(HorizontalAlignment.Center)
                     .Columns.Add(x => x.sex).NameAs("SEX").HorizontalAlignmentAs(HorizontalAlignment.Center)
                     .Columns.Add(x => x.number_card).NameAs("NUMBER_CARD").HorizontalAlignmentAs(HorizontalAlignment.Center)
-                    .Columns.Add(x => x.balance).NameAs("BALANCE").HorizontalAlignmentAs(HorizontalAlignment.Center);
+                    .Columns.Add(x => x.balance).NameAs("BALANCE").HorizontalAlignmentAs(HorizontalAlignment.Center)
+                    .Columns.Add(x => x.email).NameAs("EMAIL").HorizontalAlignmentAs(HorizontalAlignment.Center);
             });
             table.WriteLine(users);
         }
@@ -134,6 +136,8 @@ namespace Library_for_bank
             user.age = age_temp;
             Console.Write("\nadmin@My_Bank:~# Введіть пол користувача : ");
             user.sex = Console.ReadLine();
+            Console.Write("\nadmin@My_Bank:~# Введіть електрону пошту користувача : ");
+            user.email = Console.ReadLine();
             Random rand = new Random();
             DB db = new DB();
             user.number_card = GenerateRandomStringNumber(16);
@@ -153,8 +157,9 @@ namespace Library_for_bank
                 cmd.Parameters.Add("@s6", MySqlDbType.VarChar).Value = user.telephone;
                 cmd.Parameters.Add("@s7", MySqlDbType.Int32).Value = user.age;
                 cmd.Parameters.Add("@s8", MySqlDbType.VarChar).Value = user.sex;
-                cmd.Parameters.Add("@s9", MySqlDbType.Int32).Value = user.number_card;
+                cmd.Parameters.Add("@s9", MySqlDbType.VarChar).Value = user.number_card;
                 cmd.Parameters.Add("@s10", MySqlDbType.Decimal).Value = user.balance;
+                cmd.Parameters.Add("@s11", MySqlDbType.VarChar).Value = user.email;
                 db.openConnection();
                 int result = cmd.ExecuteNonQuery();
                 db.closeConnection();
@@ -219,5 +224,6 @@ namespace Library_for_bank
         public string sex { get; set; }
         public string number_card { get; set; }
         public decimal balance { get; set; }
+        public string email { get; set; }
     }
 }

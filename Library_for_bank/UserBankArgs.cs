@@ -19,7 +19,8 @@ namespace Library_for_bank
         public string Sex { get; private set; }
         public string Number_card { get; private set; }
         public decimal balance { get; private set; }
-        public UserBankArgs(string name,string surname, string fatherly,string number_telephone,int pin,string telephone,int age, string sex, string number_card, decimal balance)
+        public string email { get; private set; }
+        public UserBankArgs(string name,string surname, string fatherly,string number_telephone,int pin,string telephone,int age, string sex, string number_card, decimal balance, string email)
         {
             Name = name;
             Surname = surname;
@@ -31,6 +32,7 @@ namespace Library_for_bank
             Sex = sex;
             Number_card = number_card;
             this.balance = balance;
+            this.email = email;
         }
 
     }

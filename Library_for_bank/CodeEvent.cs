@@ -27,12 +27,11 @@ namespace Library_for_bank
             request = text;
             choosen_service = service;
             this.id_user = id_user;
-            if (choosen_service == "SMS")
+            if (choosen_service == "EMAIL")
             {
-                del = Send_SMS;
+                del = Send_Email;
             }
             Fill_class_user();
-            
         }
         public void Fill_class_user()
         {
@@ -57,52 +56,52 @@ namespace Library_for_bank
                         user.sex = reader.GetString("sex");
                         user.number_card = reader.GetString("number_card");
                         user.balance = reader.GetDecimal("balance");
+                        user.email = reader.GetString("address_email");
                     }
                 }
             }
             db.closeConnection();
         }
-        public void Send_SMS()
+        public void Send_Email()
         {
-            string modifiedNumber = user.number_telephone.Substring(3);
-            List<string> emailGateway = new List<string>();
-            emailGateway.Add("@sms.kyivstar.net");
-            emailGateway.Add("@voda.net.ua");
-            emailGateway.Add("@sms.lifecell.ua");
+            //string modifiedNumber = user.number_telephone.Substring(3);
+            //List<string> emailGateway = new List<string>();
+            //emailGateway.Add("@gmail.com");
+            //emailGateway.Add("@outlook.com");
+            //emailGateway.Add("@yahoo.com");
             List<string> toEmail = new List<string>();
             int i = 0;
-            foreach (string domain in emailGateway)
+
+            toEmail.Add(user.email);
+            email_recipient = toEmail[i];
+            var fromAddress = new MailAddress("mybankcorporation100@gmail.com", "MyBank");
+            var toAddress = new MailAddress(toEmail[i]);
+            const string fromPassword = "czwj heju tagh xgbf";
+            const string subject = "Ваш код підтвердження від MyBank";
+            string body = request;
+            var smtp = new SmtpClient()
             {
-                toEmail.Add(modifiedNumber + domain);
-                email_recipient = toEmail[i];
-                var fromAddress = new MailAddress("mybankcorporation100@gmail.com", "MyBank");
-                var toAddress = new MailAddress(toEmail[i]);
-                const string fromPassword = "czwj heju tagh xgbf";
-                const string subject = "Ваш код підтвердження від MyBank";
-                string body = request;
-                var smtp = new SmtpClient()
-                {
-                    Host = "smtp.gmail.com",
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-                };
-                using (var message = new MailMessage(fromAddress, toAddress)
-                {
-                    From = new MailAddress(fromAddress.Address),
-                    Subject = subject,
-                    Body = body,
-                    IsBodyHtml = true,
-                })
-                {
-                    message.To.Add(toEmail[i]);
-                    smtp.Send(message);
-                }
-                i++;
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                From = new MailAddress(fromAddress.Address),
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true,
+            })
+            {
+                message.To.Add(toEmail[i]);
+                smtp.Send(message);
             }
-            
+            i++;
+
+
         }
         
         

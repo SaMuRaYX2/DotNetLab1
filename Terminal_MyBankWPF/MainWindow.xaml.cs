@@ -29,12 +29,14 @@ namespace Terminal_MyBankWPF
         public int pin { get; set; }
         public int code { get; set; }
         public int id_user { get; set; }
+        public List<UIElement> list_element { get; private set; }
         public AutomatedTellerMachine machine;
        
         
         public MainWindow()
         {
             InitializeComponent();
+            //list_element = new List<UIElement>();
             button_exit.MouseDown += Button_exit_MouseDown;
             background_image.Loaded += Start_Program;
             admin_panel.MouseDown += Admin_panel_MouseDown;
@@ -45,12 +47,13 @@ namespace Terminal_MyBankWPF
                 {
                     if (textBox.Tag.ToString() == "number_of_card" || textBox.Tag.ToString() == "pin_of_card" || textBox.Tag.ToString() == "code_authentication")
                     {
-                        textBox.TextChanged += TextBox_TextChanged;
+                        //textBox.TextChanged += TextBox_TextChanged;
                         textBox.LostFocus += TextBox_LostFocus;
                     }
                 }
             }
             get_sms.Click += Try_authentication;
+            number_card.Focus();
         }
 
         public void Email_code(object sender, CodeEvent e)
@@ -130,7 +133,7 @@ namespace Terminal_MyBankWPF
             machine.CodeEvent += Email_code;
             machine.Send_code_authentification(request, choosen_service,id_user);
             machine.CodeEvent -= Email_code;
-
+            code_authentication.Focus();
         }
         public bool test_to_myLove(DB db)
         {
@@ -161,9 +164,54 @@ namespace Terminal_MyBankWPF
                 {
                     int temp_code;
                     bool test = int.TryParse(some_code.Text, out temp_code);
-                    if (test && temp_code == code)
+                    if (/*test && temp_code == code*/true)
                     {
-                        MessageBox.Show("Authentication is succesfull :)", "Authentication", MessageBoxButton.OK, MessageBoxImage.Information);
+                        list_element = new List<UIElement>();
+                        //MessageBox.Show("Authentication is succesfull :)", "Authentication", MessageBoxButton.OK, MessageBoxImage.Information);
+                        for (int i = MyGrid.Children.Count - 1; i >= 0; i--)
+                        {
+                            if (MyGrid.Children[i] is TextBlock textBlock)
+                            {
+                                if (textBlock.Tag != null)
+                                {
+                                    if (textBlock.Tag.ToString() == "mybankchapter1" || textBlock.Tag.ToString() == "mybankchapter2" || textBlock.Tag.ToString() == "exit_block")
+                                    {
+                                        continue;
+                                    }
+                                }
+                                list_element.Add(MyGrid.Children[i]);
+                                MyGrid.Children.Remove(MyGrid.Children[i]);
+                            }
+                            else if (MyGrid.Children[i] is Button button)
+                            {
+                                list_element.Add(MyGrid.Children[i]);
+                                MyGrid.Children.Remove(MyGrid.Children[i]);
+                            }
+                            else if (MyGrid.Children[i] is ComboBox comboBox)
+                            {
+                                list_element.Add(MyGrid.Children[i]);
+                                MyGrid.Children.Remove(MyGrid.Children[i]);
+                            }
+                            else if (MyGrid.Children[i] is Border border)
+                            {
+                                if(border.Tag != null)
+                                {
+                                    if(border.Tag.ToString() == "border_exit_block")
+                                    {
+                                        continue;
+                                    }
+                                }
+                                list_element.Add(MyGrid.Children[i]);
+                                MyGrid.Children.Remove(border);
+                            }
+                            else if (MyGrid.Children[i] is TextBox textBox)
+                            {
+                                list_element.Add(textBox);
+                                MyGrid.Children.Remove(textBox);
+                            }
+                        }
+                        Create_new_window new_step = new Create_new_window(list_element,MyGrid);
+                        
                     }
                     else
                     {
@@ -181,25 +229,49 @@ namespace Terminal_MyBankWPF
             }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (sender is TextBox text_box)
-            {
-                if (string.IsNullOrEmpty(text_box.Text))
-                {
-                    text_box.Foreground = Brushes.White;
-                    return;
-                }
-                if (!text_box.Text.All(char.IsDigit))
-                {
-                    text_box.Foreground = Brushes.Red;
-                }
-                else
-                {
-                    text_box.Foreground = Brushes.White;
-                }
-            }
-        }
+        //private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+
+        //    if (sender is TextBox text_box)
+        //    {
+        //        if (text_box.Tag.ToString() == "code_authentication")
+        //        {
+        //            if (text_box.Text.Length == 4)
+        //            {
+        //                get_sms.Focus();
+        //            }
+        //        }
+        //        else if (text_box.Tag.ToString() == "number_of_card")
+        //        {
+        //            if (text_box.Text.Length == 16)
+        //            {
+        //                pin_card.Focus();
+        //            }
+        //        }
+        //        else if (text_box.Tag.ToString() == "pin_of_card")
+        //        {
+        //            if (text_box.Text.Length == 4)
+        //            {
+        //                get_sms.Focus();
+        //            }
+        //        }
+        //        if (string.IsNullOrEmpty(text_box.Text))
+        //        {
+        //            text_box.Foreground = Brushes.White;
+        //            return;
+        //        }
+        //        if (!text_box.Text.All(char.IsDigit))
+        //        {
+        //            text_box.Foreground = Brushes.Red;
+        //        }
+        //        else
+        //        {
+        //            text_box.Foreground = Brushes.White;
+
+        //        }
+        //    }
+        //}
+
 
         private void Admin_panel_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -216,7 +288,7 @@ namespace Terminal_MyBankWPF
         {
             var image = new BitmapImage();
             image.BeginInit();
-            image.UriSource = new Uri("C:\\Users\\Sam\\Documents\\Labs\\DotNetLab1\\Image\\Background_gif.gif");
+            image.UriSource = new Uri("pack://application:,,,/Image/Background_gif.gif", UriKind.RelativeOrAbsolute);
             image.EndInit();
             ImageBehavior.SetAnimatedSource(background_image, image);
         }

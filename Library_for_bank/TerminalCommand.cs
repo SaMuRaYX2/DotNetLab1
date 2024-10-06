@@ -8,6 +8,7 @@ using FluentTextTable;
 using Org.BouncyCastle.Utilities.Encoders;
 using System.Net.NetworkInformation;
 using System.Xml.Linq;
+using System.Security.Cryptography;
 
 namespace Library_for_bank
 {
@@ -27,6 +28,9 @@ namespace Library_for_bank
             list_of_command.Add("show user");
             list_of_command.Add("add user");
             list_of_command.Add("exit");
+            list_of_command.Add("show bank");
+            list_of_command.Add("show all banks");
+            list_of_command.Add("add bank");
             if (_command == "show all users")
             {
                 query = "select * from users";
@@ -39,6 +43,18 @@ namespace Library_for_bank
             {
                 query = "insert into users (name,surname,fatherly,number_telephone,pin,telephone,age,sex,number_card,balance,address_email) values (@s1,@s2,@s3,@s4,@s5,@s6,@s7,@s8,@s9,@s10,@s11)";
             }
+            else if(_command == "show bank")
+            {
+                query = "select * from bank where name like @name";
+            }
+            else if(_command == "show all banks")
+            {
+                query = "select * from bank";
+            }
+            else  if(_command == "add bank")
+            {
+                query = "insert into bank (name,balance,adress) values (@s1,@s2,@s3)";
+            }
             
         }
         public void StartSeaching()
@@ -48,6 +64,22 @@ namespace Library_for_bank
                 StartSearchCommand(this, new CommandEvent(_command));
             }
 
+        }
+        public void OutputAllBank()
+        {
+            DB db = new DB();
+            db.openConnection();
+            using (MySqlCommand command = new MySqlCommand(query, db.getConnection()))
+            {
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                    }
+                }
+            }
+            
         }
         public void OutputAllUsers()
         {
@@ -225,5 +257,12 @@ namespace Library_for_bank
         public string number_card { get; set; }
         public decimal balance { get; set; }
         public string email { get; set; }
+    }
+    public class Bank
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+        public string balance { get; set; }
+        public string adress { get; set; }
     }
 }

@@ -215,8 +215,19 @@
         }
       },
       "Library_for_bank/1.0.0": {
+        "dependencies": {
+          "MyWpfLibrary": "1.0.0"
+        },
         "runtime": {
           "Library_for_bank.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "MyWpfLibrary/1.0.0": {
+        "runtime": {
+          "MyWpfLibrary.dll": {
             "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -457,6 +468,11 @@
       "hashPath": "zstdsharp.port.0.8.0.nupkg.sha512"
     },
     "Library_for_bank/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MyWpfLibrary/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

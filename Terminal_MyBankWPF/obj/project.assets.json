@@ -493,11 +493,23 @@
       },
       "Library_for_bank/1.0.0": {
         "type": "project",
+        "dependencies": {
+          "MyWpfLibrary": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Library_for_bank.dll": {}
         },
         "runtime": {
           "bin/placeholder/Library_for_bank.dll": {}
+        }
+      },
+      "MyWpfLibrary/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/MyWpfLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MyWpfLibrary.dll": {}
         }
       }
     }
@@ -1649,6 +1661,11 @@
       "type": "project",
       "path": "../Library_for_bank/Library_for_bank.csproj",
       "msbuildProject": "../Library_for_bank/Library_for_bank.csproj"
+    },
+    "MyWpfLibrary/1.0.0": {
+      "type": "project",
+      "path": "../MyWpfLibrary/MyWpfLibrary.csproj",
+      "msbuildProject": "../MyWpfLibrary/MyWpfLibrary.csproj"
     }
   },
   "projectFileDependencyGroups": {

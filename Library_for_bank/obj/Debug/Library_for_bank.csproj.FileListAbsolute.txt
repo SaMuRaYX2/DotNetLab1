@@ -1,3 +1,6 @@
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\Library_for_bank.csproj.AssemblyReference.cache
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\Library_for_bank.g.resources
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\Library_for_bank.csproj.CoreCompileInputs.cache
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\Library_for_bank.dll.config
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\Library_for_bank.dll
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\Library_for_bank.pdb
@@ -14,6 +17,7 @@ C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\Microsoft.IdentityMo
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\Microsoft.IdentityModel.Logging.dll
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\MySql.Data.dll
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\MyWpfLibrary.dll
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\System.Buffers.dll
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\System.Configuration.ConfigurationManager.dll
@@ -30,6 +34,8 @@ C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\System.ValueTuple.dl
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\TextTableBuilder.dll
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\WpfAnimatedGif.dll
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\ZstdSharp.dll
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\MyWpfLibrary.pdb
+C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\MyWpfLibrary.dll.config
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\BouncyCastle.Cryptography.xml
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\Google.Protobuf.pdb
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\Google.Protobuf.xml
@@ -57,9 +63,6 @@ C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\System.Threading.Tas
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\System.ValueTuple.xml
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\WpfAnimatedGif.pdb
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\bin\Debug\WpfAnimatedGif.xml
-C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\Library_for_bank.csproj.AssemblyReference.cache
-C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\Library_for_bank.g.resources
-C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\Library_for_bank.csproj.CoreCompileInputs.cache
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\Library_.DBC952DE.Up2Date
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\Library_for_bank.dll
 C:\Users\Sam\source\repos\MyBank\Library_for_bank\obj\Debug\Library_for_bank.pdb

@@ -42,3 +42,6 @@ C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\obj\Debug\net8.0-windows\ref
 C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\obj\Debug\net8.0-windows\Terminal_MyBankWPF.pdb
 C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\obj\Debug\net8.0-windows\Terminal_MyBankWPF.genruntimeconfig.cache
 C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\obj\Debug\net8.0-windows\ref\Terminal_MyBankWPF.dll
+C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\bin\Debug\net8.0-windows\MyWpfLibrary.dll
+C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\bin\Debug\net8.0-windows\MyWpfLibrary.pdb
+C:\Users\Sam\source\repos\MyBank\Terminal_MyBankWPF\bin\Debug\net8.0-windows\MyWpfLibrary.dll.config

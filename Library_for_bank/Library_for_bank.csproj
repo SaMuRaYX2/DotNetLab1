@@ -157,7 +157,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\background_image.jpg" />
+    <Resource Include="image\background_image.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image\icon_logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="image\Background_gif.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyWpfLibrary\MyWpfLibrary.csproj">
+      <Project>{8c0fffaf-09d7-48b4-b4db-0534a080f5ac}</Project>
+      <Name>MyWpfLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

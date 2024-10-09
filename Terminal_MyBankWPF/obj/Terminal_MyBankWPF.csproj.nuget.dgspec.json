@@ -11,6 +11,25 @@
         "projectPath": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\Library_for_bank.csproj",
         "frameworks": {
           "net472": {
+            "projectReferences": {
+              "C:\\Users\\Sam\\source\\repos\\MyBank\\MyWpfLibrary\\MyWpfLibrary.csproj": {
+                "projectPath": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyWpfLibrary\\MyWpfLibrary.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "C:\\Users\\Sam\\source\\repos\\MyBank\\MyWpfLibrary\\MyWpfLibrary.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyWpfLibrary\\MyWpfLibrary.csproj",
+        "projectName": "MyWpfLibrary",
+        "projectPath": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyWpfLibrary\\MyWpfLibrary.csproj",
+        "frameworks": {
+          "net472": {
             "projectReferences": {}
           }
         }

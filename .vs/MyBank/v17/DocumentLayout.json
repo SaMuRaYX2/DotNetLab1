@@ -3,48 +3,76 @@
   "WorkspaceRootPath": "C:\\Users\\Sam\\source\\repos\\MyBank\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\library_for_bank\\terminalcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|solutionrelative:library_for_bank\\terminalcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\library_for_bank\\commandevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|solutionrelative:library_for_bank\\commandevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\library_for_bank\\codeevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|solutionrelative:library_for_bank\\codeevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|c:\\users\\sam\\source\\repos\\mybank\\library_for_bank\\db.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|solutionrelative:library_for_bank\\db.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\library_for_bank\\create_new_window.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|solutionrelative:library_for_bank\\create_new_window.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\library_for_bank\\userbankargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|solutionrelative:library_for_bank\\userbankargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|c:\\users\\sam\\source\\repos\\mybank\\terminal_mybankwpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|solutionrelative:terminal_mybankwpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0C6F3D6F-E012-4300-8889-BD2FD9D06C3C}|MyBankTerminal\\MyBankTerminal.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\mybankterminal\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0C6F3D6F-E012-4300-8889-BD2FD9D06C3C}|MyBankTerminal\\MyBankTerminal.csproj|solutionrelative:mybankterminal\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8C0FFFAF-09D7-48B4-B4DB-0534A080F5AC}|MyWpfLibrary\\MyWpfLibrary.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\mywpflibrary\\transfer.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C0FFFAF-09D7-48B4-B4DB-0534A080F5AC}|MyWpfLibrary\\MyWpfLibrary.csproj|solutionrelative:mywpflibrary\\transfer.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|c:\\users\\sam\\source\\repos\\mybank\\terminal_mybankwpf\\admin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|solutionrelative:terminal_mybankwpf\\admin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{8C0FFFAF-09D7-48B4-B4DB-0534A080F5AC}|MyWpfLibrary\\MyWpfLibrary.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\mywpflibrary\\enrollment.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C0FFFAF-09D7-48B4-B4DB-0534A080F5AC}|MyWpfLibrary\\MyWpfLibrary.csproj|solutionrelative:mywpflibrary\\enrollment.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C0FFFAF-09D7-48B4-B4DB-0534A080F5AC}|MyWpfLibrary\\MyWpfLibrary.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\mywpflibrary\\transfer.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{8C0FFFAF-09D7-48B4-B4DB-0534A080F5AC}|MyWpfLibrary\\MyWpfLibrary.csproj|solutionrelative:mywpflibrary\\transfer.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|c:\\users\\sam\\source\\repos\\mybank\\terminal_mybankwpf\\admin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|solutionrelative:terminal_mybankwpf\\admin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|c:\\users\\sam\\source\\repos\\mybank\\terminal_mybankwpf\\admin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|solutionrelative:terminal_mybankwpf\\admin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C0FFFAF-09D7-48B4-B4DB-0534A080F5AC}|MyWpfLibrary\\MyWpfLibrary.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\mywpflibrary\\enrollment.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{8C0FFFAF-09D7-48B4-B4DB-0534A080F5AC}|MyWpfLibrary\\MyWpfLibrary.csproj|solutionrelative:mywpflibrary\\enrollment.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\library_for_bank\\terminalcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|solutionrelative:library_for_bank\\terminalcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|c:\\users\\sam\\source\\repos\\mybank\\terminal_mybankwpf\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|solutionrelative:terminal_mybankwpf\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|c:\\users\\sam\\source\\repos\\mybank\\terminal_mybankwpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|solutionrelative:terminal_mybankwpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8C0FFFAF-09D7-48B4-B4DB-0534A080F5AC}|MyWpfLibrary\\MyWpfLibrary.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\mywpflibrary\\customcontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C0FFFAF-09D7-48B4-B4DB-0534A080F5AC}|MyWpfLibrary\\MyWpfLibrary.csproj|solutionrelative:mywpflibrary\\customcontrol1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|c:\\users\\sam\\source\\repos\\mybank\\terminal_mybankwpf\\terminal_mybankwpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|solutionrelative:terminal_mybankwpf\\terminal_mybankwpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C6F3D6F-E012-4300-8889-BD2FD9D06C3C}|MyBankTerminal\\MyBankTerminal.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\mybankterminal\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0C6F3D6F-E012-4300-8889-BD2FD9D06C3C}|MyBankTerminal\\MyBankTerminal.csproj|solutionrelative:mybankterminal\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0C6F3D6F-E012-4300-8889-BD2FD9D06C3C}|MyBankTerminal\\MyBankTerminal.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\mybankterminal\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{0C6F3D6F-E012-4300-8889-BD2FD9D06C3C}|MyBankTerminal\\MyBankTerminal.csproj|solutionrelative:mybankterminal\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\library_for_bank\\commandevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|solutionrelative:library_for_bank\\commandevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\library_for_bank\\db.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|solutionrelative:library_for_bank\\db.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\library_for_bank\\codeevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|solutionrelative:library_for_bank\\codeevent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\library_for_bank\\userbankargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|solutionrelative:library_for_bank\\userbankargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\library_for_bank\\automatedtellermachine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -55,16 +83,8 @@
       "RelativeMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|solutionrelative:library_for_bank\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0C6F3D6F-E012-4300-8889-BD2FD9D06C3C}|MyBankTerminal\\MyBankTerminal.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\mybankterminal\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{0C6F3D6F-E012-4300-8889-BD2FD9D06C3C}|MyBankTerminal\\MyBankTerminal.csproj|solutionrelative:mybankterminal\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|C:\\Users\\Sam\\source\\repos\\MyBank\\library_for_bank\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{B8719C87-236C-42B9-A0F2-8C2928DCB91F}|Library_for_bank\\Library_for_bank.csproj|solutionrelative:library_for_bank\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|c:\\users\\sam\\source\\repos\\mybank\\terminal_mybankwpf\\terminal_mybankwpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|solutionrelative:terminal_mybankwpf\\terminal_mybankwpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B484B3AB-EB71-4D1F-AFEE-9CEA97541F9F}|Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj|c:\\users\\sam\\source\\repos\\mybank\\terminal_mybankwpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -78,7 +98,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 137,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -90,108 +110,30 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DB.cs",
-              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\DB.cs",
-              "RelativeDocumentMoniker": "Library_for_bank\\DB.cs",
-              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\DB.cs",
-              "RelativeToolTip": "Library_for_bank\\DB.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAYwBAAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Transfer.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyWpfLibrary\\Transfer.xaml.cs",
+              "RelativeDocumentMoniker": "MyWpfLibrary\\Transfer.xaml.cs",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyWpfLibrary\\Transfer.xaml.cs",
+              "RelativeToolTip": "MyWpfLibrary\\Transfer.xaml.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAA1wEEAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-06T21:45:56.18Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-08T23:23:36.902Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Create_new_window.cs",
-              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\Create_new_window.cs",
-              "RelativeDocumentMoniker": "Library_for_bank\\Create_new_window.cs",
-              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\Create_new_window.cs",
-              "RelativeToolTip": "Library_for_bank\\Create_new_window.cs",
-              "ViewState": "AgIAAHsAAAAAAAAAAAAYwIsAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-05T17:08:51.305Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TerminalCommand.cs",
-              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\TerminalCommand.cs",
-              "RelativeDocumentMoniker": "Library_for_bank\\TerminalCommand.cs",
-              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\TerminalCommand.cs",
-              "RelativeToolTip": "Library_for_bank\\TerminalCommand.cs",
-              "ViewState": "AgIAAP4AAAAAAAAAAAA4wAgBAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T19:12:38.224Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UserBankArgs.cs",
-              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\UserBankArgs.cs",
-              "RelativeDocumentMoniker": "Library_for_bank\\UserBankArgs.cs",
-              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\UserBankArgs.cs",
-              "RelativeToolTip": "Library_for_bank\\UserBankArgs.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACIAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-27T15:26:28.329Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "AutomatedTellerMachine.cs",
-              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\AutomatedTellerMachine.cs",
-              "RelativeDocumentMoniker": "Library_for_bank\\AutomatedTellerMachine.cs",
-              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\AutomatedTellerMachine.cs",
-              "RelativeToolTip": "Library_for_bank\\AutomatedTellerMachine.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABcAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T23:48:33.863Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CommandEvent.cs",
-              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\CommandEvent.cs",
-              "RelativeDocumentMoniker": "Library_for_bank\\CommandEvent.cs",
-              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\CommandEvent.cs",
-              "RelativeToolTip": "Library_for_bank\\CommandEvent.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCIAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T19:36:38.144Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CodeEvent.cs",
-              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\CodeEvent.cs",
-              "RelativeDocumentMoniker": "Library_for_bank\\CodeEvent.cs",
-              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\CodeEvent.cs",
-              "RelativeToolTip": "Library_for_bank\\CodeEvent.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAcwBkAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T01:10:22.807Z",
-              "EditorCaption": ""
+              "Title": "Transfer.xaml",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyWpfLibrary\\Transfer.xaml",
+              "RelativeDocumentMoniker": "MyWpfLibrary\\Transfer.xaml",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyWpfLibrary\\Transfer.xaml",
+              "RelativeToolTip": "MyWpfLibrary\\Transfer.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-10-08T23:12:48.21Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyBankTerminal\\Program.cs",
-              "RelativeDocumentMoniker": "MyBankTerminal\\Program.cs",
-              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyBankTerminal\\Program.cs",
-              "RelativeToolTip": "MyBankTerminal\\Program.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAABYAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T18:17:05.048Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "Admin.xaml",
               "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Terminal_MyBankWPF\\Admin.xaml",
               "RelativeDocumentMoniker": "Terminal_MyBankWPF\\Admin.xaml",
@@ -202,15 +144,53 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
               "Title": "Admin.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Terminal_MyBankWPF\\Admin.xaml.cs",
               "RelativeDocumentMoniker": "Terminal_MyBankWPF\\Admin.xaml.cs",
               "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Terminal_MyBankWPF\\Admin.xaml.cs",
               "RelativeToolTip": "Terminal_MyBankWPF\\Admin.xaml.cs",
-              "ViewState": "AgIAAMoAAAAAAAAAAAAewJ4AAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAACoAAAAAAAAAAAAYwJ4AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-27T12:19:08.479Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Terminal_MyBankWPF\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Terminal_MyBankWPF\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Terminal_MyBankWPF\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Terminal_MyBankWPF\\MainWindow.xaml.cs",
+              "ViewState": "AgIAABEBAAAAAAAAAAAmwB4BAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T08:39:48.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Enrollment.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyWpfLibrary\\Enrollment.xaml.cs",
+              "RelativeDocumentMoniker": "MyWpfLibrary\\Enrollment.xaml.cs",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyWpfLibrary\\Enrollment.xaml.cs",
+              "RelativeToolTip": "MyWpfLibrary\\Enrollment.xaml.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAA7wDUAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-08T20:34:59.105Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Create_new_window.cs",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\Create_new_window.cs",
+              "RelativeDocumentMoniker": "Library_for_bank\\Create_new_window.cs",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\Create_new_window.cs",
+              "RelativeToolTip": "Library_for_bank\\Create_new_window.cs",
+              "ViewState": "AgIAALoBAAAAAAAAAAAAAMwBAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-05T17:08:51.305Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -226,26 +206,73 @@
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Terminal_MyBankWPF\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Terminal_MyBankWPF\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Terminal_MyBankWPF\\MainWindow.xaml.cs",
-              "RelativeToolTip": "Terminal_MyBankWPF\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAOUAAAAAAAAAAADwvxsBAAAIAAAAAAAAAA==",
+              "Title": "CustomControl1.cs",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyWpfLibrary\\CustomControl1.cs",
+              "RelativeDocumentMoniker": "MyWpfLibrary\\CustomControl1.cs",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyWpfLibrary\\CustomControl1.cs",
+              "RelativeToolTip": "MyWpfLibrary\\CustomControl1.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-27T08:39:48.174Z"
+              "WhenOpened": "2024-10-08T19:30:40.39Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Enrollment.xaml",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyWpfLibrary\\Enrollment.xaml",
+              "RelativeDocumentMoniker": "MyWpfLibrary\\Enrollment.xaml",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyWpfLibrary\\Enrollment.xaml",
+              "RelativeToolTip": "MyWpfLibrary\\Enrollment.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-10-08T19:31:11.733Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TerminalCommand.cs",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\TerminalCommand.cs",
+              "RelativeDocumentMoniker": "Library_for_bank\\TerminalCommand.cs",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\TerminalCommand.cs",
+              "RelativeToolTip": "Library_for_bank\\TerminalCommand.cs",
+              "ViewState": "AgIAADkAAAAAAAAAAAAIwJUAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T19:12:38.224Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "Account.cs",
-              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\Account.cs",
-              "RelativeDocumentMoniker": "Library_for_bank\\Account.cs",
-              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\Account.cs",
-              "RelativeToolTip": "Library_for_bank\\Account.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyBankTerminal\\Program.cs",
+              "RelativeDocumentMoniker": "MyBankTerminal\\Program.cs",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\MyBankTerminal\\Program.cs",
+              "RelativeToolTip": "MyBankTerminal\\Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAqwBYAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T23:39:39.039Z"
+              "WhenOpened": "2024-09-29T18:17:05.048Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DB.cs",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\DB.cs",
+              "RelativeDocumentMoniker": "Library_for_bank\\DB.cs",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\DB.cs",
+              "RelativeToolTip": "Library_for_bank\\DB.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCMAAAB9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-06T21:45:56.18Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Terminal_MyBankWPF.csproj",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj",
+              "RelativeDocumentMoniker": "Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj",
+              "RelativeToolTip": "Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-09-29T19:22:00.741Z"
             },
             {
               "$type": "Document",
@@ -262,6 +289,66 @@
             {
               "$type": "Document",
               "DocumentIndex": 14,
+              "Title": "CommandEvent.cs",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\CommandEvent.cs",
+              "RelativeDocumentMoniker": "Library_for_bank\\CommandEvent.cs",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\CommandEvent.cs",
+              "RelativeToolTip": "Library_for_bank\\CommandEvent.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAFoAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T19:36:38.144Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CodeEvent.cs",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\CodeEvent.cs",
+              "RelativeDocumentMoniker": "Library_for_bank\\CodeEvent.cs",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\CodeEvent.cs",
+              "RelativeToolTip": "Library_for_bank\\CodeEvent.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T01:10:22.807Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AutomatedTellerMachine.cs",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\AutomatedTellerMachine.cs",
+              "RelativeDocumentMoniker": "Library_for_bank\\AutomatedTellerMachine.cs",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\AutomatedTellerMachine.cs",
+              "RelativeToolTip": "Library_for_bank\\AutomatedTellerMachine.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABcAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T23:48:33.863Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "UserBankArgs.cs",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\UserBankArgs.cs",
+              "RelativeDocumentMoniker": "Library_for_bank\\UserBankArgs.cs",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\UserBankArgs.cs",
+              "RelativeToolTip": "Library_for_bank\\UserBankArgs.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T15:26:28.329Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Account.cs",
+              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\Account.cs",
+              "RelativeDocumentMoniker": "Library_for_bank\\Account.cs",
+              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\Account.cs",
+              "RelativeToolTip": "Library_for_bank\\Account.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T23:39:39.039Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "app.config",
               "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Library_for_bank\\app.config",
               "RelativeDocumentMoniker": "Library_for_bank\\app.config",
@@ -273,19 +360,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Terminal_MyBankWPF.csproj",
-              "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj",
-              "RelativeDocumentMoniker": "Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj",
-              "ToolTip": "C:\\Users\\Sam\\source\\repos\\MyBank\\Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj",
-              "RelativeToolTip": "Terminal_MyBankWPF\\Terminal_MyBankWPF.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-09-29T19:22:00.741Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\Sam\\source\\repos\\MyBank\\Terminal_MyBankWPF\\App.xaml",
               "RelativeDocumentMoniker": "Terminal_MyBankWPF\\App.xaml",

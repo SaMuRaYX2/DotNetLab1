@@ -12,18 +12,26 @@ using System.Security.Cryptography;
 
 namespace Library_for_bank
 {
+    public class CommandHelp
+    {
+        public string command { get; set; }
+        public string description { get; set; }
+    }
     public class TerminalCommand
     {
         public event EventHandler<CommandEvent> StartSearchCommand;
         public string _command { get; private set; }
         public List<string> list_of_command { get; private set; }
+        public List<string> list_of_description { get; private set; }
         public string query { get; private set; }
         public string name_of_user { get; private set; }
+        
         
         public TerminalCommand(string command)
         {
             _command = command;
             list_of_command = new List<string>();
+            list_of_description = new List<string>();
             list_of_command.Add("show all users");
             list_of_command.Add("show user");
             list_of_command.Add("add user");
@@ -31,6 +39,18 @@ namespace Library_for_bank
             list_of_command.Add("show bank");
             list_of_command.Add("show all banks");
             list_of_command.Add("add bank");
+            list_of_command.Add("--help");
+            list_of_command.Add("-h");
+            list_of_description.Add("Дана команда виводить всіх користувачів банку MyBank");
+            list_of_description.Add("Дана команда виводить користувача банку MyBank, для користувача ви повинні ввести ім'я, фамілію чи по-батькові");
+            list_of_description.Add("Дана команда надає можливість добавити користувача в банк MyBank");
+            list_of_description.Add("Дана команда надає можливість вийти з терміналу");
+            list_of_description.Add("Дана команда виводить дані про банкомат, ви повинні ввести адресу банкомату");
+            list_of_description.Add("Дана команда виводить всіх банкомати для банку MyBank");
+            list_of_description.Add("Дана команда надає можливість добавити банкомат в базу даних для адміністратора");
+            list_of_description.Add("Дана команда виводить інформацію про команди, які встроєні в термінал");
+            list_of_description.Add("Дана команда виводить інформацію про команди, які встроєні в термінал");
+
             if (_command == "show all users")
             {
                 query = "select * from users";
@@ -45,7 +65,7 @@ namespace Library_for_bank
             }
             else if(_command == "show bank")
             {
-                query = "select * from bank where name like @name";
+                query = "select * from bank where adress like @adress";
             }
             else if(_command == "show all banks")
             {
@@ -67,16 +87,82 @@ namespace Library_for_bank
         }
         public void OutputAllBank()
         {
+            List<Bank> banks = new List<Bank>();
+            string adress_of_bank;
+            
             DB db = new DB();
             db.openConnection();
             using (MySqlCommand command = new MySqlCommand(query, db.getConnection()))
             {
+                if (_command == "show bank")
+                {
+                    Console.Write("\nadmin@My_Bank:~# Введіть адресу банку : ");
+                    adress_of_bank = Console.ReadLine();
+                    command.Parameters.Add("@adress",MySqlDbType.VarChar).Value = "%" + adress_of_bank + "%";
+                }
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-
+                        Bank bank = new Bank();
+                        bank.id = reader.GetInt32("id");
+                        bank.name = reader.GetString("name");
+                        bank.adress = reader.GetString("adress");
+                        bank.balance = reader.GetDecimal("balance");
+                        banks.Add(bank);
                     }
+                }
+            }
+            db.closeConnection();
+            var table = Build.TextTable<Bank>(builder =>
+            {
+                builder
+                .Columns.Add(x => x.id).NameAs("ID").HorizontalAlignmentAs(HorizontalAlignment.Center)
+                .Columns.Add(x => x.name).NameAs("NAME").HorizontalAlignmentAs(HorizontalAlignment.Center)
+                .Columns.Add(x => x.adress).NameAs("Address").HorizontalAlignmentAs(HorizontalAlignment.Center)
+                .Columns.Add(x => x.balance).NameAs("BALANCE").HorizontalAlignmentAs(HorizontalAlignment.Center);
+            });
+            table.WriteLine(banks);
+            
+        }
+        public void AddBank()
+        {
+            Bank bank = new Bank();
+            Console.Write("\nadmin@My_Bank:~# Введіть ім'я банку : ");
+            bank.name = Console.ReadLine();
+            Console.Write("\nadmin@My_Bank:~# Введіть адресу банку : ");
+            bank.adress = Console.ReadLine();
+            Console.Write("\nadmin@My_Bank:~# Введіть баланс банку : ");
+            decimal temp_balance;
+            while(!decimal.TryParse(Console.ReadLine(),out temp_balance))
+            {
+                Console.Write("\nadmin@My_Bank:~# Введіть правильне значення балансу банку : ");
+            }
+            bank.balance = temp_balance;
+            DB db = new DB();
+            db.openConnection();
+            using (MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
+            {
+                cmd.Parameters.Add("@s1", MySqlDbType.VarChar).Value = bank.name;
+                cmd.Parameters.Add("@s2", MySqlDbType.Decimal).Value = bank.balance;
+                cmd.Parameters.Add("@s3", MySqlDbType.VarChar).Value = bank.adress;
+                int result = cmd.ExecuteNonQuery();
+                db.closeConnection();
+                if(result > 0)
+                {
+                    void Result()
+                    {
+                        Console.WriteLine("\t\t\t\tДані були завантаженні на сервер, Все добре, без помилок!!!");
+                    }
+                    db.Result_of_INSERT(Result);
+                }
+                else
+                {
+                    void Result()
+                    {
+                        Console.WriteLine("\t\t\t\tДані не були завантаженні на сервер, сталися якісь проблеми!!!");
+                    }
+                    db.Result_of_INSERT(Result);
                 }
             }
             
@@ -120,8 +206,7 @@ namespace Library_for_bank
                 }
             }
             db.closeConnection();
-            var table = Build.TextTable<User>();
-            Build.TextTable<User>(builder =>
+            var table = Build.TextTable<User>(builder =>
             {
                 builder
                     .Columns.Add(x => x.id).NameAs("ID").HorizontalAlignmentAs(HorizontalAlignment.Center)
@@ -262,7 +347,7 @@ namespace Library_for_bank
     {
         public int id { get; set; }
         public string name { get; set; }
-        public string balance { get; set; }
+        public decimal balance { get; set; }
         public string adress { get; set; }
     }
 }

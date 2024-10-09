@@ -42,3 +42,6 @@ C:\Users\Sam\source\repos\MyBank\MyBankTerminal\obj\Debug\MyBankTerminal.csproj.
 C:\Users\Sam\source\repos\MyBank\MyBankTerminal\obj\Debug\MyBankTe.01C2199A.Up2Date
 C:\Users\Sam\source\repos\MyBank\MyBankTerminal\obj\Debug\MyBankTerminal.exe
 C:\Users\Sam\source\repos\MyBank\MyBankTerminal\obj\Debug\MyBankTerminal.pdb
+C:\Users\Sam\source\repos\MyBank\MyBankTerminal\bin\Debug\MyWpfLibrary.dll
+C:\Users\Sam\source\repos\MyBank\MyBankTerminal\bin\Debug\MyWpfLibrary.pdb
+C:\Users\Sam\source\repos\MyBank\MyBankTerminal\bin\Debug\MyWpfLibrary.dll.config

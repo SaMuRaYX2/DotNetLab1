@@ -25,8 +25,8 @@ namespace MyWpfLibrary
         public string number_telephone { get; private set; }
         public decimal history_cash { get; private set; }
         public Action<decimal,string> action { get; private set; }
-        public bool IsTimerReloadFinished { get; private set; }
-        public Transfer(Action<decimal,string> action, bool IsTimerFinished)
+        public bool IsTimerReloadFinished { get; private set; } = false;
+        public Transfer(Action<decimal,string> action,ref bool IsTimerFinished)
         {
             InitializeComponent();
             foreach (var element in MyGrid.Children)
@@ -38,7 +38,7 @@ namespace MyWpfLibrary
                         if (textBox is TextBox box)
                         {
                             box.TextChanged += Box_TextChanged;
-                            box.LostFocus += Box_LostFocus;
+                            
                             box.GotFocus += Box_GotFocus;
                         }
                     }
@@ -52,18 +52,46 @@ namespace MyWpfLibrary
 
         private void Pay_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(action != null)
+            if (cash_enrollment != 0.0m && number_telephone != "")
             {
-                action(cash_enrollment, number_telephone);
+                if (!long.TryParse(enter_number.Text, out _) || enter_number.Text == "Enter_number")
+                {
+                    enter_number.Text = "Enter_number";
+                    number_telephone = "";
+                }
+                else
+                {
+                    int count = 0;
+                    if (Right_number(enter_number.Text, ref count) && count == 10)
+                    {
+                        number_telephone = enter_number.Text;
+                        if (action != null)
+                        {
+                            action(cash_enrollment, number_telephone);
+                        }
+                        history_cash += cash_enrollment;
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("Номер введено не правильно!!!", "Неправильне введення", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        number_telephone = "";
+                    }
+                    
+                }
+                
             }
-            history_cash += cash_enrollment;
-            cash_enrollment = (decimal)0;
+            else
+            {
+                MessageBox.Show("Ви ввели не правильні значення для суми та номера телефона", "Неправильне введення!!!", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void Exit_from_window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MessageBox.Show($"Сума, яка була поповненна на карту становить {history_cash}", "Сума поповнення", MessageBoxButton.OK, MessageBoxImage.Information);
             IsTimerReloadFinished = false;
+            Application.Current.MainWindow.Show();
             this.Close();
         }
 
@@ -83,44 +111,44 @@ namespace MyWpfLibrary
             }
         }
 
-        private void Box_LostFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-            if (textBox.Tag == "enter_value")
-            {
-                if (!decimal.TryParse(textBox.Text, out _) || textBox.Text == "Enter_value")
-                {
-                    textBox.Text = "Enter_value";
-                    cash_enrollment = 0.0m;                    
-                }
-                else
-                {
-                    cash_enrollment = decimal.Parse(textBox.Text);
-                }
-            }
-            else if(textBox.Tag == "enter_value")
-            {
-                if(!long.TryParse(textBox.Text, out _) || textBox.Text == "Enter_number")
-                {
-                    textBox.Text = "Enter_number";
-                    number_telephone = "";
-                }
-                else
-                {
-                    int count = 0;
-                    if(Right_number(textBox.Text, ref count) && count == 10)
-                    {
-                        number_telephone = textBox.Text;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Номер введено не правильно!!!", "Неправильне введення", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        number_telephone = "";
-                    }
-                }
-            }
+        //private void Box_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    TextBox textBox = sender as TextBox;
+        //    if (textBox.Tag == "enter_value")
+        //    {
+        //        if (!decimal.TryParse(textBox.Text, out _) || textBox.Text == "Enter_value")
+        //        {
+        //            textBox.Text = "Enter_value";
+        //            cash_enrollment = 0.0m;                    
+        //        }
+        //        else
+        //        {
+        //            cash_enrollment = decimal.Parse(textBox.Text);
+        //        }
+        //    }
+        //    else if(textBox.Tag == "enter_number")
+        //    {
+        //        if(!long.TryParse(textBox.Text, out _) || textBox.Text == "Enter_number")
+        //        {
+        //            textBox.Text = "Enter_number";
+        //            number_telephone = "";
+        //        }
+        //        else
+        //        {
+        //            int count = 0;
+        //            if(Right_number(textBox.Text, ref count) && count == 10)
+        //            {
+        //                number_telephone = textBox.Text;
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Номер введено не правильно!!!", "Неправильне введення", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //                number_telephone = "";
+        //            }
+        //        }
+        //    }
             
-        }
+        //}
         public bool Right_number(string number, ref int count)
         {
             
@@ -135,6 +163,7 @@ namespace MyWpfLibrary
                 {
                     test = false;
                     count++;
+                    break;
                 }
             }
             return test;
@@ -155,34 +184,53 @@ namespace MyWpfLibrary
         private void Box_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = sender as TextBox;
-            if (textBox.Tag == "enter_value")
+            if (textBox.Tag.ToString() == "enter_value")
             {
                 if (!decimal.TryParse(textBox.Text, out _))
                 {
                     if (textBox.Text == "Enter_value" || textBox.Text == "")
                     {
+                        cash_enrollment = 0.0m;
                         textBox.Foreground = Brushes.Black;
                     }
                     else
                     {
+                        cash_enrollment = 0.0m;
                         textBox.Foreground = Brushes.DarkRed;
                     }
                 }
                 else
                 {
+                    cash_enrollment = decimal.Parse(textBox.Text);
                     textBox.Foreground = Brushes.Black;
                 }
             }
-            else if(textBox.Tag == "enter_number")
+            else if(textBox.Tag.ToString() == "enter_number")
             {
 
-                if (IsDigit(textBox.Text) || textBox.Text == "Enter_number" || textBox.Text == "")
+                if (!IsDigit(textBox.Text))
                 {
-                    textBox.Foreground = Brushes.Black;
+                    if(textBox.Text == "Enter_number" || textBox.Text == "")
+                    {
+                        number_telephone = "";
+                        textBox.Foreground = Brushes.Black;
+                    }
+                    number_telephone = "";
+                    textBox.Foreground = Brushes.DarkRed;
                 }
                 else
                 {
-                    textBox.Foreground = Brushes.DarkRed;
+                    int count = 0;
+                    if (Right_number(textBox.Text, ref count) && count == 10)
+                    {
+                        number_telephone = textBox.Text;
+                        textBox.Foreground = Brushes.Black;
+                    }
+                    else
+                    {
+                        number_telephone = "";
+                        textBox.Foreground = Brushes.Black;
+                    }
                 }
             }
         }

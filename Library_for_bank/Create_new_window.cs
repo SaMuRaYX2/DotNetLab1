@@ -29,6 +29,9 @@ namespace Library_for_bank
         public TextBlock text_withdrawal { get; private set; }
         public TextBlock text_enrollment { get; private set; }
         public TextBlock text_transfer { get; private set; }
+        public Transfer transfer { get; private set; }
+        public Enrollment enrollment { get; private set; }
+        public string choosen_funk { get; private set; } = string.Empty;
         public Create_new_window(List<UIElement> elements, Grid myGrid, int id_user)
         {
             Elements_old = new List<UIElement>();
@@ -45,14 +48,14 @@ namespace Library_for_bank
         public void Transfer_cash(decimal cash, string number)
         {
             DB db = new DB();
-            string query = "update users set balance = balance + @s1 where number_telephone = @s2";
+            string query = "update users set balance = balance + @s1 where number_telephone like @s2";
             try
             {
                 db.openConnection();
                 using (MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
                 {
                     cmd.Parameters.Add("@s1", MySqlDbType.Decimal).Value = cash;
-                    cmd.Parameters.Add("@s2", MySqlDbType.VarChar).Value = number;
+                    cmd.Parameters.Add("@s2", MySqlDbType.VarChar).Value = "%" + number + "%";
                     int result = cmd.ExecuteNonQuery();
                     if(result > 0)
                     {
@@ -74,7 +77,10 @@ namespace Library_for_bank
         {
             isTimerReloadFinished = true;
             Action<decimal, string> action = new Action<decimal, string>(Transfer_cash);
-            Transfer transfer = new Transfer(action, isTimerReloadFinished);
+            transfer = new Transfer(action,ref isTimerReloadFinished);
+            transfer.Show();
+            Application.Current.MainWindow.Hide();
+            choosen_funk = "transfer";
         }
 
         
@@ -110,8 +116,10 @@ namespace Library_for_bank
         {
             isTimerReloadFinished = true;
             Action<decimal, int> action = new Action<decimal, int>(Add_cash);
-            Enrollment enrollment = new Enrollment(action,id_user,isTimerReloadFinished);
-            
+            enrollment = new Enrollment(action,id_user,ref isTimerReloadFinished);
+            enrollment.Show();
+            Application.Current.MainWindow.Hide();
+            choosen_funk = "enrollment";
         }
 
         private void Text_withdrawal_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -303,7 +311,7 @@ namespace Library_for_bank
                     ShadowDepth = 0,
                     Opacity = 1
                 },
-                Margin = new Thickness(8, 0, 8, 8)
+                Margin = new Thickness(28, 0, 8, 8)
             };
             Panel.SetZIndex(border_enrollment, 1);
             Grid.SetRow(border_enrollment, 4);
@@ -324,7 +332,7 @@ namespace Library_for_bank
                     ShadowDepth = 0,
                     Opacity = 1
                 },
-                Margin = new Thickness(8, 8, 8, 0)
+                Margin = new Thickness(28, 8, 8, 0)
             };
             Panel.SetZIndex(border_transfer, 1);
             Grid.SetRow(border_transfer, 6);
@@ -355,7 +363,7 @@ namespace Library_for_bank
                     ShadowDepth = 10,
                     Opacity = 1
                 },
-                
+                Margin = new Thickness(20, 0, 0, 0)
             };
             Panel.SetZIndex(text_balance, 2);
             Grid.SetRow(text_balance, 0);
@@ -373,8 +381,8 @@ namespace Library_for_bank
                 FontWeight = FontWeights.Bold,
                 Effect = new DropShadowEffect
                 {
-                    Color = Colors.DarkRed,
-                    BlurRadius = 1,
+                    Color = Colors.White,
+                    BlurRadius = 4,
                     ShadowDepth = 10,
                     Opacity = 1
                 },
@@ -396,13 +404,13 @@ namespace Library_for_bank
                 FontWeight = FontWeights.Bold,
                 Effect = new DropShadowEffect
                 {
-                    Color = Colors.DarkRed,
-                    BlurRadius = 1,
+                    Color = Colors.White,
+                    BlurRadius = 4,
                     ShadowDepth = 10,
                     Opacity = 1
                 },
                 
-                Margin = new Thickness(0, 0, 0, 16)
+                Margin = new Thickness(20, 0, 0, 16)
             };
             Panel.SetZIndex(text_enrollment, 2);
             Grid.SetRow(text_enrollment, 4);
@@ -420,13 +428,13 @@ namespace Library_for_bank
                 FontWeight = FontWeights.Bold,
                 Effect = new DropShadowEffect
                 {
-                    Color = Colors.DarkRed,
-                    BlurRadius = 1,
+                    Color = Colors.White,
+                    BlurRadius = 4,
                     ShadowDepth = 10,
                     Opacity = 1
                 },
                 
-                Margin = new Thickness(0,0,0,0)
+                Margin = new Thickness(20,0,0,0)
             };
             
             Panel.SetZIndex(text_transfer, 2);
@@ -439,9 +447,9 @@ namespace Library_for_bank
             text_enrollment.Name = "textblock_enrollment";
             text_withdrawal.Name = "textblock_withdrawal";
             text_transfer.Name = "textblock_transfer";
-            text_enrollment.Background = Brushes.Transparent;
-            text_withdrawal.Background = Brushes.Transparent;
-            text_transfer.Background = Brushes.Transparent;
+            text_enrollment.Background = Brushes.DarkRed;
+            text_withdrawal.Background = Brushes.DarkRed;
+            text_transfer.Background = Brushes.DarkRed;
             text_withdrawal.Focusable = true;
             text_transfer.Focusable = true;
             text_enrollment.Focusable = true;
@@ -468,6 +476,21 @@ namespace Library_for_bank
         }
         public void Reload_Bank(object sender)
         {
+            if (choosen_funk == "enrollment" || choosen_funk == "transfer" || choosen_funk == "withdrawal")
+            {
+                if (choosen_funk == "enrollment")
+                {
+                    isTimerReloadFinished = enrollment.IsTimerReloadFinished;
+                }
+                else if (choosen_funk == "transfer")
+                {
+                    isTimerReloadFinished = transfer.IsTimerReloadFinished;
+                }
+                else if (choosen_funk == "withdrawal")
+                {
+
+                }
+            }
             if (isTimerReloadFinished == false)
             {
                 Application.Current.Dispatcher.InvokeAsync(() =>

@@ -24,12 +24,12 @@ namespace MyWpfLibrary
         public Action<decimal, int> add_cash { get; private set; }
         public int id_user { get; private set; }
         public decimal history_cash { get; private set; }
-        public bool IsTimerReloadFinished { get; private set; }
-        public Enrollment(Action<decimal,int> action, int id_user, bool IsTimerFinished)
+        public bool IsTimerReloadFinished { get; private set; } = false;
+        public Enrollment(Action<decimal,int> action, int id_user,ref bool IsTimerFinished)
         {
             InitializeComponent();
             enter_value.TextChanged += Enter_value_TextChanged;
-            enter_value.LostFocus += Enter_value_LostFocus;
+            //enter_value.LostFocus += Enter_value_LostFocus;
             enter_value.GotFocus += Enter_value_GotFocus;
             pay.MouseDown += Pay_MouseDown;
             cash_enrollment = (decimal)0;
@@ -52,34 +52,30 @@ namespace MyWpfLibrary
         {
             MessageBox.Show($"Сума, яка була поповненна на карту становить {history_cash}", "Сума поповнення", MessageBoxButton.OK, MessageBoxImage.Information);
             IsTimerReloadFinished = false;
+            Application.Current.MainWindow.Show();
             this.Close();
+            
 
         }
 
         private void Pay_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
-            if (add_cash != null)
+            if (cash_enrollment != 0.0m)
             {
-                add_cash(cash_enrollment, id_user);
-            }
-            history_cash += cash_enrollment;
-            cash_enrollment = (decimal)0;
-        }
-
-        private void Enter_value_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (!decimal.TryParse(enter_value.Text,out _) || enter_value.Text == "Enter_value")
-            {
-                enter_value.Text = "Enter_value";
-                cash_enrollment = 0.0m;
+                if (add_cash != null)
+                {
+                    add_cash(cash_enrollment, id_user);
+                }
+                history_cash += cash_enrollment;
+                
             }
             else
             {
-                cash_enrollment = decimal.Parse(enter_value.Text);
+                enter_value.Text = "Enter_value";
             }
-            
         }
+
+        
 
         private void Enter_value_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -88,15 +84,18 @@ namespace MyWpfLibrary
                 if (enter_value.Text == "Enter_value" || enter_value.Text == "")
                 {
                     enter_value.Foreground = Brushes.Black;
+                    cash_enrollment = 0.0m;
                 }
                 else
                 {
                     enter_value.Foreground = Brushes.DarkRed;
+                    cash_enrollment = 0.0m;
                 }
             }
             else
             {
-                enter_value.Foreground = Brushes.Black;    
+                cash_enrollment = decimal.Parse(enter_value.Text);
+                enter_value.Foreground = Brushes.Black;
             }
         }
     }

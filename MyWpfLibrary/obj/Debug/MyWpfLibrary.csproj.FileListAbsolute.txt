@@ -49,3 +49,5 @@ C:\Users\Sam\source\repos\MyBank\MyWpfLibrary\obj\Debug\MyWpfLibrary.csproj.Core
 C:\Users\Sam\source\repos\MyBank\MyWpfLibrary\obj\Debug\MyWpfLib.E31A959A.Up2Date
 C:\Users\Sam\source\repos\MyBank\MyWpfLibrary\obj\Debug\MyWpfLibrary.dll
 C:\Users\Sam\source\repos\MyBank\MyWpfLibrary\obj\Debug\MyWpfLibrary.pdb
+C:\Users\Sam\source\repos\MyBank\MyWpfLibrary\obj\Debug\Withdrawal.g.cs
+C:\Users\Sam\source\repos\MyBank\MyWpfLibrary\obj\Debug\Withdrawal.baml

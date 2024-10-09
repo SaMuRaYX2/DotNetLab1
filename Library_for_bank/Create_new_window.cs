@@ -2,11 +2,13 @@
 using MyWpfLibrary;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using WpfAnimatedGif;
@@ -19,6 +21,7 @@ namespace Library_for_bank
         public List<UIElement> Elements_new { get; private set; }
         public Grid MyGrid { get; private set; }
         public int id_user { get; private set; }
+        public int id_bank { get; private set; } = 1;
         private Timer background_timer;
         private int row_count;
         private int column_count;
@@ -31,6 +34,7 @@ namespace Library_for_bank
         public TextBlock text_transfer { get; private set; }
         public Transfer transfer { get; private set; }
         public Enrollment enrollment { get; private set; }
+        public Withdrawal withdrawal { get; private set; }
         public string choosen_funk { get; private set; } = string.Empty;
         public Create_new_window(List<UIElement> elements, Grid myGrid, int id_user)
         {
@@ -122,9 +126,110 @@ namespace Library_for_bank
             choosen_funk = "enrollment";
         }
 
+        public void Withdrawal_cash(decimal cash, int id_user, int id_bank, Image image)
+        {
+            DB db = new DB();
+            bool test_withdrawal = false;
+            string query = "update bank set balance = balance - @s1 where id = @s2";
+            db.openConnection();
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
+                {
+                    cmd.Parameters.Add("@s1", MySqlDbType.Decimal).Value = cash;
+                    cmd.Parameters.Add("@s2", MySqlDbType.Int32).Value = id_bank;
+                    int result = cmd.ExecuteNonQuery();
+                    if (result > 0)
+                    {
+                        test_withdrawal = true;
+                        MessageBox.Show("Дані були успішно обновленні на сервері", "Зняття коштів з банкомата пройшло успішно", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        test_withdrawal = false;
+                        MessageBox.Show("Дані були не успішно завантаженні на сервер", "Зняття коштів з банкомата не відбулося", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                test_withdrawal = false;
+                MessageBox.Show($"Операція не успішна причина помилки {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            if(test_withdrawal == true)
+            {
+                query = "update users set balance = balance - @s1 where id = @s2";
+                try
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
+                    {
+                        cmd.Parameters.Add("@s1", MySqlDbType.Decimal).Value = cash;
+                        cmd.Parameters.Add("@s2", MySqlDbType.Int32).Value = id_user;
+                        int result = cmd.ExecuteNonQuery();
+                        if (result > 0)
+                        {
+                            MessageBox.Show("Дані були успішно обновленні на сервері", "Кошти з рахунку користувача успішно знято", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        else
+                        {
+
+                            MessageBox.Show("Дані були не успішно завантаженні на сервер", "Кошти з рахунку користувача успішно знято", MessageBoxButton.OK, MessageBoxImage.Error);
+                            ToolTip tt = new ToolTip();
+                            tt.Content = "Натисніть на цю кнопку, щоб обновити банкомат";
+                            image.ToolTip = tt;
+                            tt.IsOpen = true;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Операція не успішна причина помилки {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            db.closeConnection();
+
+        }
+        public void Switch_bank(decimal cash,Image image,int id_bank)
+        {
+            DB db = new DB();
+            List<int> list_id_bank = new List<int>();
+            try
+            {
+                string query = "select id from bank where balance - @s1 > 0 and id != @s2";
+                db.openConnection();
+                using (MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
+                {
+                    cmd.Parameters.Add("@s1", MySqlDbType.Decimal).Value = cash;
+                    cmd.Parameters.Add("@s2", MySqlDbType.Int32).Value = id_bank;
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list_id_bank.Add(reader.GetInt32("id"));
+                        }
+                    }
+                }
+                image.ToolTip = null;
+                id_bank = list_id_bank[0];
+                db.closeConnection();
+                withdrawal.id_bank = id_bank;
+                MessageBox.Show("Банкомат успішно змінено на тей банкомат, який має необхідну суму для поповнення", "Змінення банку", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Сталася помилка під час того як ми спробували змінити банк : {ex.Message}", "Помилка зміни банку", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
         private void Text_withdrawal_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
+            isTimerReloadFinished = true;
+            Action<decimal, int, int, Image> action = new Action<decimal, int, int, Image>(Withdrawal_cash);
+            Action<decimal,Image,int> switch_terminal = new Action<decimal, Image, int>(Switch_bank);
+            withdrawal = new Withdrawal(action, id_user,id_bank, switch_terminal);
+            withdrawal.Show();
+            Application.Current.MainWindow.Hide();
+            choosen_funk = "withdrawal";
+
         }
 
         private void Button_exit_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -488,7 +593,7 @@ namespace Library_for_bank
                 }
                 else if (choosen_funk == "withdrawal")
                 {
-
+                    isTimerReloadFinished = withdrawal.IsTimerReloadFinished;
                 }
             }
             if (isTimerReloadFinished == false)

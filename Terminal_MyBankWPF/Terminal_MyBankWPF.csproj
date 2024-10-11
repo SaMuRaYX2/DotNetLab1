@@ -11,6 +11,8 @@
   <ItemGroup>
     <None Remove="admin_panel.png" />
     <None Remove="Background_gif.gif" />
+    <None Remove="Image\admin_panel.jpg" />
+    <None Remove="Image\icon_logout.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,8 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Image\admin_panel.jpg" />
     <Resource Include="Image\admin_panel.png" />
     <Resource Include="Image\Background_gif.gif" />
+    <Resource Include="Image\icon_logout.png" />
   </ItemGroup>
 
 </Project>

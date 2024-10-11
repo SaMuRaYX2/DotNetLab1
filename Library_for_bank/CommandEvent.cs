@@ -38,14 +38,14 @@ namespace Library_for_bank
                     {
                         del = terminalCommand.InputUser;
                     }
-                    else if(_command == "exit")
+                    else if (_command == "exit")
                     {
                         del = () =>
                         {
                             Environment.Exit(0);
                         };
                     }
-                    else if(_command == "--help" || _command == "-h")
+                    else if (_command == "--help" || _command == "-h")
                     {
                         del = () =>
                         {
@@ -77,13 +77,21 @@ namespace Library_for_bank
                             table.WriteLine(commands_list);
                         };
                     }
-                    else if(_command == "show all banks" || _command == "show bank")
+                    else if (_command == "show all banks" || _command == "show bank")
                     {
                         del = terminalCommand.OutputAllBank;
                     }
-                    else if(_command == "add bank")
+                    else if (_command == "add bank")
                     {
                         del = terminalCommand.AddBank;
+                    }
+                    else if (_command == "show all admins" || _command == "show admin")
+                    {
+                        del = terminalCommand.OutputAllAdmin;
+                    }
+                    else if (_command == "add admin")
+                    {
+                        del = terminalCommand.AddAdmin;
                     }
                     break;
                 }

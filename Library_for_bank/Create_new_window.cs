@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using MyWpfLibrary;
+using Org.BouncyCastle.Asn1.X509;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -49,8 +50,9 @@ namespace Library_for_bank
             
         }
 
-        public void Transfer_cash(decimal cash, string number)
+        public bool Transfer_cash(decimal cash, string number)
         {
+            bool test = true;
             DB db = new DB();
             string query = "update users set balance = balance + @s1 where number_telephone like @s2";
             try
@@ -67,6 +69,7 @@ namespace Library_for_bank
                     }
                     else
                     {
+                        test = false;
                         MessageBox.Show("Баланс не обнолений :(", "Операція не успішна", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
@@ -74,13 +77,15 @@ namespace Library_for_bank
             }
             catch (Exception ex)
             {
+                test = false;
                 MessageBox.Show($"Сталася помилка {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            return test;
         }
         private void Text_transfer_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             isTimerReloadFinished = true;
-            Action<decimal, string> action = new Action<decimal, string>(Transfer_cash);
+            Func<decimal, string,bool> action = new Func<decimal, string,bool>(Transfer_cash);
             transfer = new Transfer(action,ref isTimerReloadFinished);
             transfer.Show();
             Application.Current.MainWindow.Hide();
@@ -126,28 +131,30 @@ namespace Library_for_bank
             choosen_funk = "enrollment";
         }
 
-        public void Withdrawal_cash(decimal cash, int id_user, int id_bank, Image image)
+        public bool Withdrawal_cash(decimal cash, int id_user, int id_bank, Image image)
         {
+            bool test_to_right_func = false;
             DB db = new DB();
             bool test_withdrawal = false;
-            string query = "update bank set balance = balance - @s1 where id = @s2";
+            string query = "update users set balance = balance - @s1 where id = @s2";
+            
             db.openConnection();
             try
             {
                 using (MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
                 {
                     cmd.Parameters.Add("@s1", MySqlDbType.Decimal).Value = cash;
-                    cmd.Parameters.Add("@s2", MySqlDbType.Int32).Value = id_bank;
+                    cmd.Parameters.Add("@s2", MySqlDbType.Int32).Value = id_user;
                     int result = cmd.ExecuteNonQuery();
                     if (result > 0)
                     {
                         test_withdrawal = true;
-                        MessageBox.Show("Дані були успішно обновленні на сервері", "Зняття коштів з банкомата пройшло успішно", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Дані були успішно обновленні на сервері", "Зняття коштів з карти користувача пройшло успішно", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {
                         test_withdrawal = false;
-                        MessageBox.Show("Дані були не успішно завантаженні на сервер", "Зняття коштів з банкомата не відбулося", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Дані були не успішно завантаженні на сервер", "Зняття коштів з карти користувача не відбулося", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
@@ -158,22 +165,25 @@ namespace Library_for_bank
             }
             if(test_withdrawal == true)
             {
-                query = "update users set balance = balance - @s1 where id = @s2";
+                bool test_right_withdrawal_bank = false;
+                query = "update bank set balance = balance - @s1 where id = @s2";
                 try
                 {
                     using (MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
                     {
                         cmd.Parameters.Add("@s1", MySqlDbType.Decimal).Value = cash;
-                        cmd.Parameters.Add("@s2", MySqlDbType.Int32).Value = id_user;
+                        cmd.Parameters.Add("@s2", MySqlDbType.Int32).Value = id_bank;
                         int result = cmd.ExecuteNonQuery();
                         if (result > 0)
                         {
-                            MessageBox.Show("Дані були успішно обновленні на сервері", "Кошти з рахунку користувача успішно знято", MessageBoxButton.OK, MessageBoxImage.Information);
+                            test_to_right_func = true;
+                            test_right_withdrawal_bank = true;
+                            MessageBox.Show("Дані були успішно обновленні на сервері", "Кошти з банкомату були успішно зняті", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                         else
                         {
 
-                            MessageBox.Show("Дані були не успішно завантаженні на сервер", "Кошти з рахунку користувача успішно знято", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Дані були не успішно завантаженні на сервер", "Кошти з банкомату не були зняті", MessageBoxButton.OK, MessageBoxImage.Error);
                             ToolTip tt = new ToolTip();
                             tt.Content = "Натисніть на цю кнопку, щоб обновити банкомат";
                             image.ToolTip = tt;
@@ -183,11 +193,30 @@ namespace Library_for_bank
                 }
                 catch (Exception ex)
                 {
+                    
                     MessageBox.Show($"Операція не успішна причина помилки {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                if (test_right_withdrawal_bank == false)
+                {
+                    query = "update user set balance = balance + @s1 where id = @s2";
+                    try
+                    {
+                        using(MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
+                        {
+                            cmd.Parameters.Add("@s1", MySqlDbType.Decimal).Value = cash;
+                            cmd.Parameters.Add("@s2", MySqlDbType.Int32).Value = id_user;
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show($"Операція не успішна причина помилки {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
             }
+            
             db.closeConnection();
-
+            return test_to_right_func;
         }
         public void Switch_bank(decimal cash,Image image,int id_bank)
         {
@@ -223,7 +252,7 @@ namespace Library_for_bank
         private void Text_withdrawal_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             isTimerReloadFinished = true;
-            Action<decimal, int, int, Image> action = new Action<decimal, int, int, Image>(Withdrawal_cash);
+            Func<decimal, int, int, Image, bool> action = new Func<decimal, int, int, Image, bool>(Withdrawal_cash);
             Action<decimal,Image,int> switch_terminal = new Action<decimal, Image, int>(Switch_bank);
             withdrawal = new Withdrawal(action, id_user,id_bank, switch_terminal);
             withdrawal.Show();

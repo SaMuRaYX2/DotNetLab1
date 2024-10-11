@@ -275,8 +275,9 @@ namespace Terminal_MyBankWPF
 
         private void Admin_panel_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Admin Panel_admin = new Admin(this);
-            Panel_admin.Show();
+
+            Authentication_admin authentication_ = new Authentication_admin();
+            authentication_.Show();
             this.Hide();
         }
 

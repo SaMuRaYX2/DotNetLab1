@@ -24,9 +24,9 @@ namespace MyWpfLibrary
         public decimal cash_enrollment { get; private set; }
         public string number_telephone { get; private set; }
         public decimal history_cash { get; private set; }
-        public Action<decimal,string> action { get; private set; }
+        public Func<decimal,string,bool> action { get; private set; }
         public bool IsTimerReloadFinished { get; private set; } = false;
-        public Transfer(Action<decimal,string> action,ref bool IsTimerFinished)
+        public Transfer(Func<decimal, string, bool> action,ref bool IsTimerFinished)
         {
             InitializeComponent();
             foreach (var element in MyGrid.Children)
@@ -54,36 +54,45 @@ namespace MyWpfLibrary
         {
             if (cash_enrollment != 0.0m && number_telephone != "")
             {
-                if (!long.TryParse(enter_number.Text, out _) || enter_number.Text == "Enter_number")
+                //if (!long.TryParse(enter_number.Text, out _) || enter_number.Text == "Enter_number")
+                //{
+                //    enter_number.Text = "Enter_number";
+                //    number_telephone = "";
+                //}
+
+                int count = 0;
+                if (Right_number(enter_number.Text, ref count) && count == 10)
                 {
-                    enter_number.Text = "Enter_number";
-                    number_telephone = "";
+                    number_telephone = enter_number.Text;
+                    if (action != null)
+                    {
+                        bool test = action(cash_enrollment, number_telephone);
+                        if (test)
+                        {
+                            history_cash += cash_enrollment;
+                        }
+                    }
+
+
                 }
                 else
                 {
-                    int count = 0;
-                    if (Right_number(enter_number.Text, ref count) && count == 10)
-                    {
-                        number_telephone = enter_number.Text;
-                        if (action != null)
-                        {
-                            action(cash_enrollment, number_telephone);
-                        }
-                        history_cash += cash_enrollment;
-                        
-                    }
-                    else
-                    {
-                        MessageBox.Show("Номер введено не правильно!!!", "Неправильне введення", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        number_telephone = "";
-                    }
-                    
+                    MessageBox.Show("Номер введено не правильно!!!", "Неправильне введення", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    number_telephone = "";
+                    enter_number.Text = "Enter_number";
+                    enter_value.Text = "Enter_value";
+                    pay.Focus();
                 }
+                    
+                
                 
             }
             else
             {
+                enter_value.Text = "Enter_value";
+                enter_number.Text = "Enter_number"; 
                 MessageBox.Show("Ви ввели не правильні значення для суми та номера телефона", "Неправильне введення!!!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                pay.Focus();
             }
         }
 
@@ -97,6 +106,7 @@ namespace MyWpfLibrary
 
         private void Box_GotFocus(object sender, RoutedEventArgs e)
         {
+            MyGrid.UpdateLayout();
             TextBox textBox = sender as TextBox;
             if (textBox.Text == "Enter_value" || textBox.Text == "Enter_number")
             {
@@ -107,6 +117,20 @@ namespace MyWpfLibrary
                 else if (textBox.Text == "Enter_number")
                 {
                     enter_number.Text = "";
+                }
+            }
+            else
+            {
+                if (!IsDigit(textBox.Text))
+                {
+                    if (textBox.Tag.ToString() == "enter_value")
+                    {
+                        enter_value.Text = "";
+                    }
+                    else if (textBox.Tag.ToString() == "enter_number")
+                    {
+                        enter_number.Text = "";
+                    }
                 }
             }
         }
@@ -168,17 +192,22 @@ namespace MyWpfLibrary
             }
             return test;
         }
-        public bool IsDigit(string c)
+        public bool IsDigit(string number)
         {
+
+            foreach (char c in number)
+            {
+                if(int.TryParse($"{c}",out _))
+                {
+                    continue;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
             
-            if (int.TryParse(c, out _))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
 
         private void Box_TextChanged(object sender, TextChangedEventArgs e)
@@ -192,6 +221,7 @@ namespace MyWpfLibrary
                     {
                         cash_enrollment = 0.0m;
                         textBox.Foreground = Brushes.Black;
+                        
                     }
                     else
                     {
@@ -210,13 +240,17 @@ namespace MyWpfLibrary
 
                 if (!IsDigit(textBox.Text))
                 {
-                    if(textBox.Text == "Enter_number" || textBox.Text == "")
+                    if (textBox.Text == "Enter_number" || textBox.Text == "")
                     {
                         number_telephone = "";
                         textBox.Foreground = Brushes.Black;
+
                     }
-                    number_telephone = "";
-                    textBox.Foreground = Brushes.DarkRed;
+                    else
+                    {
+                        number_telephone = "";
+                        textBox.Foreground = Brushes.DarkRed;
+                    }
                 }
                 else
                 {
@@ -229,7 +263,8 @@ namespace MyWpfLibrary
                     else
                     {
                         number_telephone = "";
-                        textBox.Foreground = Brushes.Black;
+                        textBox.Foreground = Brushes.DarkRed;
+                        
                     }
                 }
             }

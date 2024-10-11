@@ -9,6 +9,8 @@ using Org.BouncyCastle.Utilities.Encoders;
 using System.Net.NetworkInformation;
 using System.Xml.Linq;
 using System.Security.Cryptography;
+using Org.BouncyCastle.Pqc.Crypto.Lms;
+using System.Diagnostics;
 
 namespace Library_for_bank
 {
@@ -25,8 +27,8 @@ namespace Library_for_bank
         public List<string> list_of_description { get; private set; }
         public string query { get; private set; }
         public string name_of_user { get; private set; }
-        
-        
+
+
         public TerminalCommand(string command)
         {
             _command = command;
@@ -39,6 +41,9 @@ namespace Library_for_bank
             list_of_command.Add("show bank");
             list_of_command.Add("show all banks");
             list_of_command.Add("add bank");
+            list_of_command.Add("show all admins");
+            list_of_command.Add("show admin");
+            list_of_command.Add("add admin");
             list_of_command.Add("--help");
             list_of_command.Add("-h");
             list_of_description.Add("Дана команда виводить всіх користувачів банку MyBank");
@@ -48,6 +53,9 @@ namespace Library_for_bank
             list_of_description.Add("Дана команда виводить дані про банкомат, ви повинні ввести адресу банкомату");
             list_of_description.Add("Дана команда виводить всіх банкомати для банку MyBank");
             list_of_description.Add("Дана команда надає можливість добавити банкомат в базу даних для адміністратора");
+            list_of_description.Add("Дана команда виводить всіх адмінів банківської системи");
+            list_of_description.Add("Дана команда виводить адмінів банківської системи за ім'ям");
+            list_of_description.Add("Дана команда надає можливість додати в систему адміна");
             list_of_description.Add("Дана команда виводить інформацію про команди, які встроєні в термінал");
             list_of_description.Add("Дана команда виводить інформацію про команди, які встроєні в термінал");
 
@@ -63,19 +71,31 @@ namespace Library_for_bank
             {
                 query = "insert into users (name,surname,fatherly,number_telephone,pin,telephone,age,sex,number_card,balance,address_email) values (@s1,@s2,@s3,@s4,@s5,@s6,@s7,@s8,@s9,@s10,@s11)";
             }
-            else if(_command == "show bank")
+            else if (_command == "show bank")
             {
                 query = "select * from bank where adress like @adress";
             }
-            else if(_command == "show all banks")
+            else if (_command == "show all banks")
             {
                 query = "select * from bank";
             }
-            else  if(_command == "add bank")
+            else if (_command == "add bank")
             {
                 query = "insert into bank (name,balance,adress) values (@s1,@s2,@s3)";
             }
-            
+            else if (_command == "show all admins")
+            {
+                query = "select * from admins";
+            }
+            else if (_command == "show admin")
+            {
+                query = "select * from admins where name like @s1";
+            }
+            else if (_command == "add admin")
+            {
+                query = "insert into admins (name,password) values (@s1,@s2)";
+            }
+
         }
         public void StartSeaching()
         {
@@ -84,6 +104,56 @@ namespace Library_for_bank
                 StartSearchCommand(this, new CommandEvent(_command));
             }
 
+        }
+        public void OutputAllAdmin()
+        {
+            List<Admin> admins = new List<Admin>();
+            string name_of_admin;
+            DB db = new DB();
+            db.openConnection();
+            using (MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
+            {
+                if (_command == "show admin")
+                {
+                    Console.Write("\nadmin@My_Bank:~# Введіть username адміна : ");
+                    name_of_admin = Console.ReadLine();
+                    cmd.Parameters.Add("@s1", MySqlDbType.VarChar).Value = "%" + name_of_admin + "%";
+                }
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Admin admin = new Admin();
+                        admin.id = reader.GetInt32("id");
+                        admin.name = reader.GetString("name");
+                        admin.password = reader.GetString("password");
+                        admins.Add(admin);
+                    }
+                }
+            }
+            db.closeConnection();
+            var table = Build.TextTable<Admin>(builder =>
+            {
+                builder
+                    .Borders.Top
+                        .LeftStyleAs("*")
+                        .IntersectionStyleAs("-")
+                        .RightStyleAs("*")
+                    .Borders.HeaderHorizontal
+                        .LineStyleAs("=")
+                    .Borders.InsideHorizontal
+                        .LeftStyleAs("*")
+                        .IntersectionStyleAs("=")
+                        .RightStyleAs("*")
+                    .Borders.Bottom
+                        .LeftStyleAs("*")
+                        .IntersectionStyleAs("-")
+                        .RightStyleAs("*")
+                    .Columns.Add(x => x.id).NameAs("ID").HorizontalAlignmentAs(HorizontalAlignment.Center)
+                    .Columns.Add(x => x.name).NameAs("NAME").HorizontalAlignmentAs(HorizontalAlignment.Center)
+                    .Columns.Add(x => x.password).NameAs("PASSWORD").HorizontalAlignmentAs(HorizontalAlignment.Center);
+            });
+            table.WriteLine(admins);
         }
         public void OutputAllBank()
         {
@@ -124,6 +194,40 @@ namespace Library_for_bank
             });
             table.WriteLine(banks);
             
+        }
+        public void AddAdmin()
+        {
+            Admin admin = new Admin();
+            Console.WriteLine("\nadmin@My_Bank:~# Введіть ім'я банку : ");
+            admin.name = Console.ReadLine();
+            Console.WriteLine("\nadmin@My_Bank:~# Введіть ім'я банку : ");
+            admin.password = Console.ReadLine();
+            DB db = new DB();
+            db.openConnection();
+            using(MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
+            {
+                cmd.Parameters.Add("@s1", MySqlDbType.VarChar).Value = admin.name;
+                cmd.Parameters.Add("@s2", MySqlDbType.VarChar).Value = admin.password;
+                int result = cmd.ExecuteNonQuery();
+                if(result > 0)
+                {
+                    void Result()
+                    {
+                        Console.WriteLine("\t\t\t\tДані були завантаженні на сервер, Все добре, без помилок!!!");
+                    }
+                    db.Result_of_INSERT(Result);
+                }
+                else
+                {
+                    void Result()
+                    {
+                        Console.WriteLine("\t\t\t\tДані не були завантаженні на сервер, сталися якісь проблеми!!!");
+                    }
+                    db.Result_of_INSERT(Result);
+                }
+            }
+
+            db.closeConnection();
         }
         public void AddBank()
         {
@@ -349,5 +453,11 @@ namespace Library_for_bank
         public string name { get; set; }
         public decimal balance { get; set; }
         public string adress { get; set; }
+    }
+    public class Admin
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+        public string password { get; set; }
     }
 }

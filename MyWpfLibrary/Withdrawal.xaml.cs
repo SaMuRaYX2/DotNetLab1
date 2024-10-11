@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Packaging;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -24,13 +25,13 @@ namespace MyWpfLibrary
         public decimal history_cash { get; private set; } = 0.0m;
         public decimal withdrawal_cash { get; private set; }
 
-        public Action<decimal, int, int, Image> action { get; private set; }
+        public Func<decimal, int, int, Image, bool> action { get; private set; }
         public Action<decimal, Image,int> switch_terminal { get; private set; }
         public int id_user { get; set; }
         public int id_bank { get; set; }
 
 
-        public Withdrawal(Action<decimal, int, int, Image> action, int id_user, int id_bank, Action<decimal, Image,int> switch_ter)
+        public Withdrawal(Func<decimal, int, int, Image, bool> action, int id_user, int id_bank, Action<decimal, Image,int> switch_ter)
         {
             InitializeComponent();
             exit_from_window.MouseDown += Exit_from_window_MouseDown;
@@ -58,13 +59,18 @@ namespace MyWpfLibrary
             {
                 if(action != null)
                 {
-                    action(withdrawal_cash, id_user, id_bank, switch_bank);
-                    history_cash += withdrawal_cash;
+                    bool test = action(withdrawal_cash, id_user, id_bank, switch_bank);
+                    if (test)
+                    {
+                        history_cash += withdrawal_cash;
+                    }
                 }
             }
             else
             {
+                enter_value.Text = "Enter_value";
                 MessageBox.Show("Ви ввели не правильні значення для суми та номера телефона", "Неправильне введення!!!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                
             }
         }
 
@@ -73,6 +79,13 @@ namespace MyWpfLibrary
             if(enter_value.Text == "Enter_value")
             {
                 enter_value.Text = "";
+            }
+            else
+            {
+                if (!IsDigit(enter_value.Text))
+                {
+                    enter_value.Text = "";
+                }
             }
         }
 
@@ -91,6 +104,7 @@ namespace MyWpfLibrary
                 {
                     enter_value.Foreground = Brushes.Black;
                     withdrawal_cash = 0.0m;
+                    enter_value.Text = "";
                 }
                 else
                 {
@@ -98,6 +112,22 @@ namespace MyWpfLibrary
                     withdrawal_cash = 0.0m;
                 }
             }
+        }
+        public bool IsDigit(string number)
+        {
+            bool test = true;
+            foreach(char c in number)
+            {
+                if (char.IsDigit(c))
+                {
+                    continue;
+                }
+                else
+                {
+                    test = false;
+                }
+            }
+            return test;
         }
 
         public bool IsRightValue(string value)

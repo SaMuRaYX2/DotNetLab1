@@ -8,7 +8,7 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Title="Enrollment" Height="450" Width="500">
-    <Grid Background="Black" Opacity="0.88">
+    <Grid x:Name="MyGrid" Background="Black" Opacity="0.88">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>

@@ -21,7 +21,7 @@ namespace Library_for_bank
             {
                 connection.Close();
             }
-        }
+            }
         public MySqlConnection getConnection()
         {
             return connection;

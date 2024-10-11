@@ -29,7 +29,7 @@ namespace Terminal_MyBankWPF
     public partial class Admin : Window
     {
 
-        public MainWindow window_start { get; private set; }
+       
         public List<UserBankArgs> Users { get; private set; }
         string name;
         string surname;
@@ -41,11 +41,9 @@ namespace Terminal_MyBankWPF
         string sex;
         string number_card;
         string email;
-        public Admin(MainWindow mainWindow)
+        public Admin()
         {
             InitializeComponent();
-
-            window_start = mainWindow;
             this.Closed += Admin_Closed;
             this.Loaded += Admin_Loaded;
             add_user.Click += Add_user_Click;
@@ -83,8 +81,8 @@ namespace Terminal_MyBankWPF
                     if (textBox.Tag.ToString() == "pib")
                     {
                         string[] parts = textBox.Text.Split(' ');
-                        surname = parts[0];
-                        name = parts[1];
+                        surname = parts[1];
+                        name = parts[0];
                         fatherly = parts[2];
                     }
                     else if (textBox.Tag.ToString() == "telephone_number")
@@ -239,7 +237,7 @@ namespace Terminal_MyBankWPF
 
         private void Admin_Closed(object? sender, EventArgs e)
         {
-            window_start.Show();
+            Application.Current.MainWindow.Show();
             this.Close();
         }
         public IEnumerable<TextBox> GetAllTextBoxes (DependencyObject parent)

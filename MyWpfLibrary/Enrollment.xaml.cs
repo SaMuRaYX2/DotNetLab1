@@ -41,13 +41,37 @@ namespace MyWpfLibrary
 
         private void Enter_value_GotFocus(object sender, RoutedEventArgs e)
         {
+            MyGrid.UpdateLayout();
             if(enter_value.Text == "Enter_value")
             {
                 enter_value.Text = "";
             }
+            else
+            {
+                if (!IsDigit(enter_value.Text))
+                {
+                    enter_value.Text = "";
+                }
+            }
             
         }
 
+        public bool IsDigit(string number)
+        {
+            bool test = true;
+            foreach(char c in number)
+            {
+                if (char.IsDigit(c))
+                {
+                    continue;
+                }
+                else
+                {
+                    test = false;
+                }
+            }
+            return test;
+        }
         private void Exit_from_window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MessageBox.Show($"Сума, яка була поповненна на карту становить {history_cash}", "Сума поповнення", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -65,13 +89,16 @@ namespace MyWpfLibrary
                 if (add_cash != null)
                 {
                     add_cash(cash_enrollment, id_user);
+                    history_cash += cash_enrollment;
                 }
-                history_cash += cash_enrollment;
+                
                 
             }
             else
             {
+                MessageBox.Show("Неправильно введене значення!!!", "WARNING VALUE", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                 enter_value.Text = "Enter_value";
+                
             }
         }
 
@@ -85,11 +112,13 @@ namespace MyWpfLibrary
                 {
                     enter_value.Foreground = Brushes.Black;
                     cash_enrollment = 0.0m;
+                    enter_value.Text = "";
                 }
                 else
                 {
                     enter_value.Foreground = Brushes.DarkRed;
                     cash_enrollment = 0.0m;
+                    
                 }
             }
             else

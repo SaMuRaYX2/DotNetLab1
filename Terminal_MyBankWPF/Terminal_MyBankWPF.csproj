@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="admin_panel.png" />
+    <None Remove="Background_gif.gif" />
+    <None Remove="Image\admin_panel.jpg" />
+    <None Remove="Image\icon_logout.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="9.0.0" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Library_for_bank\Library_for_bank.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\admin_panel.jpg" />
+    <Resource Include="Image\admin_panel.png" />
+    <Resource Include="Image\Background_gif.gif" />
+    <Resource Include="Image\icon_logout.png" />
+  </ItemGroup>
+
+</Project>

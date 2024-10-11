@@ -198,9 +198,9 @@ namespace Library_for_bank
         public void AddAdmin()
         {
             Admin admin = new Admin();
-            Console.WriteLine("\nadmin@My_Bank:~# Введіть ім'я банку : ");
+            Console.Write("\nadmin@My_Bank:~# Введіть username : ");
             admin.name = Console.ReadLine();
-            Console.WriteLine("\nadmin@My_Bank:~# Введіть ім'я банку : ");
+            Console.Write("\nadmin@My_Bank:~# Введіть password : ");
             admin.password = Console.ReadLine();
             DB db = new DB();
             db.openConnection();

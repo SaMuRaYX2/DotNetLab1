@@ -198,7 +198,7 @@ namespace Library_for_bank
                 }
                 if (test_right_withdrawal_bank == false)
                 {
-                    query = "update user set balance = balance + @s1 where id = @s2";
+                    query = "update users set balance = balance + @s1 where id = @s2";
                     try
                     {
                         using(MySqlCommand cmd = new MySqlCommand(query, db.getConnection()))
@@ -220,7 +220,7 @@ namespace Library_for_bank
         }
         public void Switch_bank(decimal cash,Image image,int id_bank)
         {
-            DB db = new DB();
+                DB db = new DB();
             List<int> list_id_bank = new List<int>();
             try
             {
@@ -312,11 +312,11 @@ namespace Library_for_bank
             progressBar.Value = 0;
             
             MyGrid.Children.Add(progressBar);
-            background_timer = new Timer(Second_step_Authentication, MyGrid, 1000, Timeout.Infinite);
+            background_timer = new Timer(Second_step_Authentication, MyGrid, 4500, Timeout.Infinite);
             for(int i = 0; i <= 100; i++)
             {
                 progressBar.Value = i;
-                await Task.Delay(10);
+                await Task.Delay(40);
             }
         }
 
@@ -353,6 +353,7 @@ namespace Library_for_bank
                 }
 
                 isTimerFinished = true;
+                background_timer.Change(Timeout.Infinite, Timeout.Infinite);
                 StartUsingBank();
             });
             
